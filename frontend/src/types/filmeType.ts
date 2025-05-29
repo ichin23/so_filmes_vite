@@ -1,15 +1,15 @@
 export interface FilmeProps {
     id: number
-    title: string
-    originalTitle: string
-    cover: string
-    description: string
-    rating: number
+    titulo: string
+    tituloOriginal: string
+    capa: string
+    descricao: string
+    avaliacao: number
     ano: number,
-    generes: string[]
-    director: string
+    generos: string[]
+    diretor: string
 }
 
-export interface FilmesListProps {
-    movies: FilmeProps[]
+export interface FilmesListaProps {
+    filmes: FilmeProps[]
 }

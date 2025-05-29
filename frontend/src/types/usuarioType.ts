@@ -1,7 +1,7 @@
 export interface UsuarioProps {
     id: number
-    name: string
-    username: string
+    nome: string
+    usuario: string
     email: string
-    password?: string
+    senha?: string
 }

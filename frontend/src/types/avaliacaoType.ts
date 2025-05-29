@@ -1,8 +1,8 @@
 import type { UsuarioProps } from "./usuarioType"
 
-export interface RatingProps {
+export interface AvaliacaoProps {
     id: number
-    author: UsuarioProps
-    rating: number
-    comment: string
+    autor: UsuarioProps
+    avaliacao: number
+    comentario: string
 }
