@@ -1,17 +1,17 @@
 import { FaStar } from "react-icons/fa";
-import type { FilmeProps, FilmesListProps } from "../../types/filmeType";
+import type { FilmeProps, FilmesListaProps } from "../../types/filmeType";
 import { SFilmeCard } from "./styles";
 
-export function FilmeCard({ movies }: FilmesListProps) {
+export function FilmeCard({ filmes }: FilmesListaProps) {
     return (
         <SFilmeCard>
-            {movies.map((movie: FilmeProps) => (
-                <article key={movie.id}>
-                    <img src={movie.cover} alt={`Capa ${movie.id}`}></img>
-                    <h6>{movie.title}</h6>
+            {filmes.map((filme: FilmeProps) => (
+                <article key={filme.id}>
+                    <img src={filme.capa} alt={`Capa ${filme.id}`}></img>
+                    <h6>{filme.titulo}</h6>
                     <div>
                         <FaStar />
-                        <p>{movie.rating}</p>
+                        <p>{filme.avaliacao}</p>
                     </div>
                 </article>
             ))}

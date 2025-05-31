@@ -1,13 +1,39 @@
+import { FaSearch } from 'react-icons/fa'
 import { FilmeCard } from './components/FilmeCard'
+import { Input } from './components/Input'
 import { mockFilmes } from './mocks/FilmesMock'
-import { GlobalStyle } from './styles/GlobalStyle'
+import { colors, GlobalStyle } from './styles/GlobalStyle'
+import { Button } from './components/Button'
+import { GrAdd } from 'react-icons/gr'
 
 function App() {
 
   return (
     <>
       <GlobalStyle />
-      <FilmeCard movies={mockFilmes}></FilmeCard>
+      <FilmeCard filmes={mockFilmes}></FilmeCard>
+      <Input
+        label='Login'
+        placeholder='Seu email...'
+        name="email"
+        type="email"
+        border={false} />
+
+      <Input
+        label='Senha'
+        placeholder='Sua senha...'
+        name="senha"
+        type="password"
+        border={false} />
+      <Input
+        icon={<FaSearch color={colors.white} />}
+        placeholder='Busque...'
+        name="search"
+        border={false} />
+
+      <Button onPressed={() => { }}>Login</Button>
+      <Button icone={<GrAdd />} onPressed={() => { }}>Login</Button>
+      <Button vazado={true} onPressed={() => { }}>Login</Button>
     </>
   )
 }

@@ -7,7 +7,7 @@ describe("FilmeCard", () => {
     it("deve exibir múltiplos filmes", () => {
         render(
             <MemoryRouter>
-                <FilmeCard movies={mockFilmes} />
+                <FilmeCard filmes={mockFilmes} />
             </MemoryRouter>
         );
         const imgElement = screen.getByRole('img', { name: 'Capa 1' })

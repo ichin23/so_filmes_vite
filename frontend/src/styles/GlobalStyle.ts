@@ -30,4 +30,13 @@ export const GlobalStyle = createGlobalStyle`
         color: ${colors.text};
         background-color: ${colors.background};
     }
+    input{
+        height: 35px;
+        width: 90vw;
+        max-width: 250px;
+        border-radius: 8px;
+        border: none;
+        margin: 5px 3px;
+        padding: 5px;
+    }
 `
