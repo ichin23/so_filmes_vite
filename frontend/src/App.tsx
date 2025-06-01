@@ -5,6 +5,8 @@ import { mockFilmes } from './mocks/FilmesMock'
 import { colors, GlobalStyle } from './styles/GlobalStyle'
 import { Button } from './components/Button'
 import { GrAdd } from 'react-icons/gr'
+import { AvaliacaoCard } from './components/AvaliacaoCard'
+import { mockAvaliacoes } from './mocks/mockAvaliacoes'
 
 function App() {
 
@@ -34,6 +36,7 @@ function App() {
       <Button onPressed={() => { }}>Login</Button>
       <Button icone={<GrAdd />} onPressed={() => { }}>Login</Button>
       <Button vazado={true} onPressed={() => { }}>Login</Button>
+      <AvaliacaoCard {...mockAvaliacoes} ></AvaliacaoCard>
     </>
   )
 }

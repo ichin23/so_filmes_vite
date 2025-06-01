@@ -1,15 +1,14 @@
 import { createGlobalStyle } from 'styled-components'
 
 export const colors = {
-    primary: "#FFA726",
-    secondary: "#2196F3",
-    secondaryLight: "#BCE0FB",
+    primary: "#EF233C",
+    secondary: "#1B4965",
+    secondaryLight: "#6E7081",
     black: "#000",
     white: "#fff",
-    background: '#ffffff',
-    text: '#333333',
-    primaryDark: "#FFA726",
-    secondaryDark: "#2980b9",
+    yellow: "#D5C22D",
+    background: '#2B2D42',
+    text: '#F6F6F6',
     border: "#dddddd",
     error: "#e74c3c",
     errorDark: "#c0392b",
