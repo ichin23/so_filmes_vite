@@ -8,12 +8,14 @@ import { GrAdd } from 'react-icons/gr'
 import { AvaliacaoCard } from './components/AvaliacaoCard'
 import { mockAvaliacoes } from './mocks/mockAvaliacoes'
 import Avaliacao from './components/Avaliacao'
+import { Logo } from './components/Logo/Logo'
 
 function App() {
 
   return (
     <>
       <GlobalStyle />
+      <Logo />
       <FilmeCard filmes={mockFilmes}></FilmeCard>
       <Input
         label='Login'
