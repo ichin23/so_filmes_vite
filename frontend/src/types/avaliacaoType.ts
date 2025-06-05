@@ -1,8 +1,14 @@
-import type { UsuarioProps } from "./usuarioType"
+import type { AvaliadorProps } from "./avaliadorType"
+import type { FilmeMostraProps } from "./filmeMostra"
 
 export interface AvaliacaoProps {
     id: number
-    autor: UsuarioProps
+    autor: AvaliadorProps
     avaliacao: number
     comentario: string
+    filme: FilmeMostraProps
+}
+
+export interface AvaliacaoListProps {
+    avaliacoes: AvaliacaoProps[]
 }
