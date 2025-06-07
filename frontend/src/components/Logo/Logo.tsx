@@ -5,7 +5,7 @@ export function Logo(){
         <S.Header>
             <S.Section>
                  <MdMovie />
-                 <h3>Só Filmes</h3>
+                 <h3>SóFilmes</h3>
             </S.Section>
         </S.Header>
     )

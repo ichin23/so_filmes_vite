@@ -1,12 +1,47 @@
-import { SDescricao } from "./styles";
-import bighero from "../../assets/bighero.png"
+import { 
+  SDescricao, 
+  SImg, 
+  SConteudo, 
+  SEstrela, 
+  DescricaoContainer, 
+  TextoDescricao, 
+  EstrelaContainer, 
+  NumeroAvaliacao 
+} from "./styles";
 
-export function FilmeDetales (){
-    return (
-        <SDescricao>
-            <img src={bighero} alt="" />
-            <h3>Operação Big Hero</h3>
-            <p>Diretor:</p>
-        </SDescricao>
-    )
-};
+import { mockFilmeDetale } from "../../mocks/FilmeDetale";
+import estrela from "../../assets/estrela.png";
+
+export function FilmeDetales() {
+  const filme = mockFilmeDetale[0];
+  
+  return (
+    <SDescricao>
+      <SImg src={filme.capa} alt={filme.titulo} />
+      <SConteudo>
+        <div>
+          <h1>{filme.titulo}</h1>
+          <aside>
+            <p>Diretor: {filme.diretor}</p>
+            <span>{filme.ano}</span>
+          </aside>
+
+          <DescricaoContainer>
+            <TextoDescricao>
+              {filme.descricao.split(". ").map((frase, index) => (
+                <p key={index}>{frase.trim()}.</p>
+              ))}
+            </TextoDescricao>
+
+            <EstrelaContainer>
+              <SEstrela src={estrela} alt="Estrela" />
+              <NumeroAvaliacao>{filme.avaliacao}</NumeroAvaliacao>
+            </EstrelaContainer>
+          </DescricaoContainer>
+
+          <p>Gêneros: <span>{filme.generos.join(", ")}</span></p>
+        </div>
+      </SConteudo>
+    </SDescricao>
+  );
+}
