@@ -34,7 +34,7 @@ export function Input({
             <div>
                 <SInput name={name} id={name} disabled={disabled} placeholder={placeholder} value={value} onChange={onChange} type={type} background={background} border={border}>
                 </SInput>
-                {icon}
+                {icon && <span className="input-icon">{icon}</span>}
             </div>
         </SInputComponent>
     </>

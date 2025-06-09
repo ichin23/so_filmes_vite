@@ -1,13 +1,6 @@
 import styled from 'styled-components'
 import { colors } from "../../styles/GlobalStyle";
 
-export const Header = styled.header`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 0.1rem solid #EDF2F4;
-`;
-
 export const Section = styled.section`
     display: flex;
     align-items: center;

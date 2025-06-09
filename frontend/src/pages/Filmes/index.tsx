@@ -8,14 +8,14 @@ import { GrAdd } from 'react-icons/gr'
 import { AvaliacaoCard } from '../../components/AvaliacaoCard'
 import { mockAvaliacoes } from '../../mocks/mockAvaliacoes'
 import Avaliacao from '../../components/Avaliacao'
-import { Logo } from '../../components/Logo/Logo'
+import { Header } from '../../components/Header'
 
 
 export function FilmesPage(){
     return(
         <>
                   <GlobalStyle />
-                  <Logo />
+                  <Header/>
                  
                   <FilmeCard filmes={mockFilmes}></FilmeCard>
                   <Input

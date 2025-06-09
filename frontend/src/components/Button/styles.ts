@@ -26,11 +26,4 @@ export const SButton = styled.button<SButtonProps>`
     border: ${props => props.vazado ? "3px solid " + colors.primary : "none"};
     border-radius: 8px;
     cursor: pointer;
-
-    div{
-        align-self: center;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
 `
