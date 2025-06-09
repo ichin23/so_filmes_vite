@@ -23,7 +23,7 @@ export function Button({
     height = "45px",
     maxWidth = "250px",
     color = colors.white,
-    backgroundColor = colors.primary,
+    backgroundColor = colors.secondary,
     vazado = false,
     icone,
     fontSize = "15px",

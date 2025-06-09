@@ -4,7 +4,7 @@ import { colors } from "../../styles/GlobalStyle";
 export const SAvaliacao = styled.article`
     width: 100%;
     display: flex;
-
+    margin: 10px 0px;
     
 
     div{
@@ -14,7 +14,7 @@ export const SAvaliacao = styled.article`
             font-size: 18px;
             font-weight: 800;
             h4:first-child{
-                color: ${colors.primary}
+                color: ${colors.white}
             }
         }
         p{
@@ -24,19 +24,19 @@ export const SAvaliacao = styled.article`
     }
 
     #foto{
-        width: 60px;
-        height: 60px;
+        width: 30px;
+        height: 30px;
         border-radius: 50%;
         background-color: ${colors.secondaryLight};
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 35px;
+        font-size: 15px;
     }
     #divider{
         height: 100%;
         width: 10px;
         background-color: ${colors.secondary};
-        margin: 0px 10px;
+        margin: 0px 5px;
     }
 `

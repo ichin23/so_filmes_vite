@@ -3,16 +3,28 @@ import { colors } from "../../styles/GlobalStyle"
 
 export interface SInputProps {
     background?: string,
-    border?: boolean
+    border?: boolean,
 }
 
-export const SInput = styled.input<SInputProps>`
-    background: ${props => props.background || "#6E7081"};
+export const STextArea = styled.textarea<SInputProps>`
+    background: ${props => props.border != null ? "#00000000" : props.background || "#6E7081"};
     color: ${colors.white};
+    border: 1px solid white;
+    width: 100%;
+    height: 100px;
+    resize: vertical;
+`
+
+export const SInput = styled.input<SInputProps>`
+    background: ${props => props.border != null ? "#00000000" : props.background || "#6E7081"};
+    color: ${colors.white};
+    border: 1px solid white;
+    width: 100%;
 `
 
 export interface SInputComponentProps {
-    label?: string
+    label?: string,
+    maxWidth: string
 }
 export const SInputComponent = styled.div<SInputComponentProps>`
     display: flex;
@@ -24,14 +36,14 @@ export const SInputComponent = styled.div<SInputComponentProps>`
     }
     
     label{
-        display: ${props=> props.label==undefined ? "none" : "block"}
+        display: ${props => props.label == undefined ? "none" : "block"}
     }
 
     div{
         position: relative;
-        height: 41px;
-        width: 90vw;
-        max-width: 260px;    }
+        //height: 41px;
+        width: 100%;
+        max-width: ${(props) => props.maxWidth ?? "260px"};    }
 
     svg{
         position:absolute;

@@ -19,7 +19,7 @@ export const SAvaliacaoCard = styled.article`
     flex-wrap: nowrap;
     align-items: flex-start;
     justify-content: space-around;
-    background-color: ${colors.secondary};
+    background-color: ${colors.tertiary};
     border-radius: 8px;
 
     div {
