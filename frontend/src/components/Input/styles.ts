@@ -51,4 +51,17 @@ export const SInputComponent = styled.div<SInputComponentProps>`
         transform: translateY(-50%);
         right:20px;
     }
+    .input-icon {
+        position: absolute;
+        left: 5.5rem;
+        top: 50%;
+        transform: translateY(-47%);
+        pointer-events: none;
+        display: flex;
+        align-items: center;
+    }
+    .input-wrapper {
+    position: relative;
+    width: 100%;
+}
 `

@@ -8,14 +8,14 @@ import { GrAdd } from 'react-icons/gr'
 import { AvaliacaoCard } from '../../components/AvaliacaoCard'
 import { mockAvaliacoes } from '../../mocks/mockAvaliacoes'
 import Avaliacao from '../../components/Avaliacao'
-import { Logo } from '../../components/Logo/Logo'
+import { Header } from '../../components/Header'
 
 
 export function FilmesPage(){
     return(
         <>
                   <GlobalStyle />
-                  <Logo />
+                  <Header/>
                  
                   <FilmeCard filmes={mockFilmes}></FilmeCard>
                   <Input
@@ -41,7 +41,7 @@ export function FilmesPage(){
                   <Button icone={<GrAdd />} onPressed={() => { }}>Login</Button>
                   <Button vazado={true} onPressed={() => { }}>Login</Button>
                   <AvaliacaoCard {...mockAvaliacoes} ></AvaliacaoCard>
-                  <Avaliacao avaliacao={mockAvaliacoes.avaliacoes[0]} />
+                  <Avaliacao avaliacao={mockAvaliacoes[0]} />
         </>
     )
 }
