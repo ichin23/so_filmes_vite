@@ -1,7 +1,6 @@
-import type { AvaliacaoListProps } from "../types/avaliacaoType";
+import type {AvaliacaoProps} from "../types/avaliacaoType";
 
-export const mockAvaliacoes: AvaliacaoListProps = {
-    avaliacoes: [
+export const mockAvaliacoes: AvaliacaoProps[] = [
         {
             id: 1,
             autor: {nome:"Autor 1", id: 0},
@@ -27,4 +26,3 @@ export const mockAvaliacoes: AvaliacaoListProps = {
             }
         },
     ]
-}

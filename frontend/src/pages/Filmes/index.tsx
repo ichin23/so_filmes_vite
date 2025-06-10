@@ -41,7 +41,7 @@ export function FilmesPage(){
                   <Button icone={<GrAdd />} onPressed={() => { }}>Login</Button>
                   <Button vazado={true} onPressed={() => { }}>Login</Button>
                   <AvaliacaoCard {...mockAvaliacoes} ></AvaliacaoCard>
-                  <Avaliacao avaliacao={mockAvaliacoes.avaliacoes[0]} />
+                  <Avaliacao avaliacao={mockAvaliacoes[0]} />
         </>
     )
 }

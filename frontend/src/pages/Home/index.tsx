@@ -12,7 +12,7 @@ export function Home() {
             <h3>Mais Avaliados Essa semana</h3>
             <FilmeCard filmes={mockFilmes} />
             <h3>Comentários Recentes</h3>
-            <AvaliacaoCard avaliacoes={mockAvaliacoes} />
+            <AvaliacaoCard {...mockAvaliacoes} />
             <h3>Seus Favoritos</h3>
             <FilmeCard filmes={mockFilmes} />
         </SHome>
