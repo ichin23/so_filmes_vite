@@ -9,11 +9,12 @@ import {
   NumeroAvaliacao 
 } from "./styles";
 
-import { mockFilmeDetale } from "../../mocks/FilmeDetale";
 import estrela from "../../assets/estrela.png";
+import type { FilmeProps } from "../../types/filmeType";
 
-export function FilmeDetales() {
-  const filme = mockFilmeDetale[0];
+
+
+export function FilmeDetalhes(filme: FilmeProps) {
   
   return (
     <SDescricao>

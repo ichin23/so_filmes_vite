@@ -6,18 +6,14 @@ export const SHeader = styled.header`
     align-items: center;
     border-bottom: 0.1rem solid #EDF2F4;
     justify-content: space-between;
-    .searchBar{
-        display: flex;
-        align-items: center;
-        margin-right: 2.5rem;
-        gap:3rem;
-        Button{
-            height: auto;
-            img{
-                width: 2.5rem;
-                }
-            }
-        }
+    
+`
+
+export const SBusca = styled.section`
+  display: flex;
+  align-items: center;
+  margin-right: 2.5rem;
+  gap:3rem;
 `
 
 export const SIcon = styled.div`
