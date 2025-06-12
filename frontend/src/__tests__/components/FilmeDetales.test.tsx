@@ -1,9 +1,11 @@
 import { render, screen } from "@testing-library/react";
-import { FilmeDetales } from "../../components/FilmeDetales/";
+import { FilmeDetalhes } from "../../components/FilmeDetales/";
+import type { FilmeProps } from "../../types/filmeType";
+import { mockFilmes } from "../../mocks/FilmesMock";
 
 describe("FilmeDetales", () => {
   it("deve renderizar o título, diretor, descrição, capa, generos, ano e avaliação do filme", () => {
-    render(<FilmeDetales />);
+    render(<FilmeDetalhes {...mockFilmes[0] as FilmeProps} />);
 
     const titulo = screen.getByText("Operação Big Hero");
     const capa = screen.getByRole("img", { name: /operação big hero/i });
