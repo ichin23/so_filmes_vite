@@ -4,7 +4,7 @@ export interface FilmeProps {
     tituloOriginal: string
     capa: string
     descricao: string
-    avaliacao: number
+    avaliacao?: number
     ano: number,
     generos: string[]
     diretor: string

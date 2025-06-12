@@ -1,43 +1,76 @@
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import { Button } from "../Button";
 import { Input } from "../Input";
 import { SFilmeForm } from "./styles";
+import type { FilmeProps } from "../../types/filmeType";
 
-export function FilmeForm() {
-    const [previewImage, setPreviewImage] = useState<string | null>(null); // Armazena a URL da imagem para preview
-    
+interface FilmeFormProps {
+    initialData?: Partial<FilmeProps>,
+    onSubmit: (filme: Omit<FilmeProps, "id" | "avaliacao">) => void
+}
+
+export function FilmeForm({ initialData, onSubmit }: FilmeFormProps) {
+    const [previewImage, setPreviewImage] = useState<string | null>(null);
+    const [titulo, setTitulo] = useState(initialData?.titulo || '')
+    const [tituloOriginal, setTituloOriginal] = useState(initialData?.tituloOriginal || '')
+    const [ano, setAno] = useState(initialData?.ano?.toString() || '')
+    const [generos, setGeneros] = useState(initialData?.generos?.join(", ") || '')
+    const [descricao, setDescricao] = useState(initialData?.descricao || '')
+    const [diretor, setDiretor] = useState(initialData?.diretor || '')
+    const [isLoading, setIsLoading] = useState(false)
+
+
     const onImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files && event.target.files[0]) {
             const file = event.target.files[0];
             const reader = new FileReader();
-            
-            // Quando o FileReader terminar de ler o arquivo
-            reader.onload = (e) => { // Use reader.onload, não reader.addEventListener("load", ...)
-                // e.target.result contém a URL da imagem (base64)
-                setPreviewImage(e.target?.result as string); 
+
+            reader.onload = (e) => {
+                setPreviewImage(e.target?.result as string);
+                console.log(previewImage)
             };
-            
-            reader.readAsDataURL(file); // Lê o arquivo como uma URL de dados (base64)
+
+            reader.readAsDataURL(file);
         } else {
-            setPreviewImage(null); // Limpa o preview se nenhum arquivo for selecionado
+            setPreviewImage(null);
         }
     };
 
+    const handleSubmit = (e: FormEvent) => {
+        e.preventDefault()
+        setIsLoading(true)
+        try {
+            onSubmit({
+                titulo: titulo,
+                tituloOriginal: tituloOriginal,
+                ano: Number(ano),
+                generos: generos.split(", "),
+                capa: previewImage ?? "",
+                descricao: descricao,
+                diretor: diretor
+            })
+        } catch (err) {
+            console.error(err instanceof Error ? err.message : "Falha ao publicar")
+        } finally {
+            setIsLoading(false)
+        }
+    }
+
     return <>
-        <SFilmeForm onSubmit={(prop) => { console.log(prop) }}>
+        <SFilmeForm onSubmit={handleSubmit}>
             <div>
                 <input name="capa" onChange={onImageChange} type="file" />
-                {previewImage ?<img src={previewImage} alt="Capa do Filme Preview"></img> :null }
+                {previewImage ? <img src={previewImage} alt="Capa do Filme Preview"></img> : null}
                 <h4>Capa do Filme</h4>
             </div>
             <section>
-                <Input label="Título" name="titulo" border={true} />
-                <Input label="Título Original" name="tituloOriginal" border={true} />
-                <Input label="Ano" type="number" name="ano" border={true} />
-                <Input label="Gêneros" name="generos" border={true} />
-                <Input label="Descrição" textarea={true} name="descricao" border={true} />
-                <Input label="Direção" name="direcao" border={true} />
-                <Button onPressed={() => { }}>Enviar</Button>
+                <Input maxWidth="70vw" value={titulo} onChange={(e) => { setTitulo(e.target.value) }} label="Título" name="titulo" border={true} />
+                <Input maxWidth="70vw" value={tituloOriginal} onChange={(e) => { setTituloOriginal(e.target.value) }} label="Título Original" name="tituloOriginal" border={true} />
+                <Input maxWidth="70vw" value={ano} onChange={(e) => { setAno(e.target.value) }} label="Ano" type="number" name="ano" border={true} />
+                <Input maxWidth="70vw" value={generos} onChange={(e) => { setGeneros(e.target.value) }} label="Gêneros" name="generos" border={true} />
+                <Input maxWidth="70vw" value={descricao} onChange={(e) => { setDescricao(e.target.value) }} label="Descrição" textarea={true} name="descricao" border={true} />
+                <Input maxWidth="70vw" value={diretor} onChange={(e) => { setDiretor(e.target.value) }} label="Direção" name="direcao" border={true} />
+                <Button disabled={isLoading}>Enviar</Button>
             </section>
 
         </SFilmeForm>

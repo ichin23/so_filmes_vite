@@ -14,7 +14,8 @@ interface ButtonProps {
   fontSize?: string;
   fontWeight?: string;
   disabled?: boolean;
-  onPressed: () => void;
+  type?: "submit" | "button" | "reset" | undefined,
+  onPressed?: () => void;
 }
 
 
@@ -30,10 +31,11 @@ export function Button({
     fontSize = "15px",
     fontWeight = "800",
     disabled=false,
+    type="submit",
     onPressed
 }: ButtonProps) {
     return <>
-        <SButton onClick={() => onPressed()} disabled={disabled} fontWeight={fontWeight} width={width} height={height} maxWidth={maxWidth} color={color} fontSize={fontSize} backgroundColor={backgroundColor} vazado={vazado}>
+        <SButton type={type} onClick={onPressed} disabled={disabled} fontWeight={fontWeight} width={width} height={height} maxWidth={maxWidth} color={color} fontSize={fontSize} backgroundcolor={backgroundColor} vazado={vazado}>
                 {icone}
                 {children}
         </SButton>

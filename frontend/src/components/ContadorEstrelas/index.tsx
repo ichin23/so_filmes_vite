@@ -13,11 +13,11 @@ export function ContadorEstrelas({ quantidade }: EstrelaProps) {
     const estrelas = []
 
     for (let i = 0; i < estrelasCompletas; i++) {
-        estrelas.push(<FaStar color={colors.yellow} />)
+        estrelas.push(<FaStar key={i} color={colors.yellow} />)
     }
 
     if (meiaEstrela) {
-        estrelas.push(<FaStarHalf color={colors.yellow} />)
+        estrelas.push(<FaStarHalf key={estrelasCompletas} color={colors.yellow} />)
     }
 
     return <>

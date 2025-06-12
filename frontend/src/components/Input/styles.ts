@@ -3,7 +3,7 @@ import { colors } from "../../styles/GlobalStyle"
 
 export interface SInputProps {
     background?: string,
-    border?: boolean,
+    border?: boolean
 }
 
 export const STextArea = styled.textarea<SInputProps>`
@@ -30,6 +30,8 @@ export const SInputComponent = styled.div<SInputComponentProps>`
     display: flex;
     flex-direction: column;
     margin: 10px 20px;
+    width: 90vw;
+    max-width: ${(props) => props.maxWidth ?? "260px"};
 
     ::placeholder{
         color:${colors.white};

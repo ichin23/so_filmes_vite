@@ -1,5 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
-
+import { createGlobalStyle, styled } from 'styled-components'
 
 export const colors = {
     primary: "#2B2D42",
@@ -19,13 +18,18 @@ export const colors = {
     disabled: "#95a5a6",
 }
 
+export const Title = styled.h3`
+    font-size: 20px;
+    font-weight: 800;
+`
+
 export const GlobalStyle = createGlobalStyle`
     * {
         margin: 0;
         padding: 0;
         border: 0;
         box-sizing: border-box;
-        font-family: sans-serif;
+        font-family: "Inter",  sans-serif;
     }
     body {
         color: ${colors.text};
@@ -39,4 +43,5 @@ export const GlobalStyle = createGlobalStyle`
         margin: 5px 3px;
         padding: 5px;
     }
+    
 `

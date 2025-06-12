@@ -5,15 +5,17 @@ import { Busca } from "../pages/Busca/index";
 import { Home } from "../pages/Home";
 import { CadastroFilme } from "../pages/CadastroFilme";
 import { PerfilPage } from "../pages/Perfil";
+import { Login } from "../pages/Login";
 
 export function RouteWeb() {
     return (
         <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/teste" element={<FilmesPage />} />
-            <Route path="/filme" element={<FilmeDetalesPage />} />
-            <Route path="/cadastroFilme" element={<CadastroFilme />} />
+            <Route path="/criarFilme" element={<CadastroFilme />} />
+            <Route path="/filme/:id" element={<FilmeDetalesPage />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/perfil" element={<PerfilPage />} />
+            <Route path="/teste" element={<FilmesPage />} />
             <Route path="/buscar" element={<Busca termo="robo"/>}/>
         </Routes>
     )

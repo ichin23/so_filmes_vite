@@ -1,4 +1,4 @@
-import React, { useState, type ReactNode } from "react"
+import React, { type ReactNode } from "react"
 import { SInput, SInputComponent, STextArea } from "./styles"
 
 export interface InputProps {
@@ -11,6 +11,8 @@ export interface InputProps {
     type?: string,
     textarea?: boolean,
     disabled?: boolean,
+    value: string,
+    onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
     maxWidth?: string,
 }
 
@@ -24,25 +26,19 @@ export function Input({
     textarea = false,
     type = "text",
     disabled = false,
+    value,
+    onChange,
     maxWidth = "none",
 }: InputProps) {
     
-    const [value, setValue] = useState("")
-
-    const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setValue(e.target.value)
-    }
-
-    const onChangeTA = (e: React.ChangeEvent<HTMLTextAreaElement>)=>{
-        setValue(e.target.value)
-    }
+   console.log(label)
 
     return <>
         <SInputComponent maxWidth={maxWidth} label={label}>
             <label htmlFor={name}>{label ?? name}</label>
             <div>
                 {textarea
-                    ? <STextArea name={name} id={name} disabled={disabled} placeholder={placeholder} value={value} onChange={onChangeTA} background={background} border={border}></STextArea>
+                    ? <STextArea name={name} id={name} disabled={disabled} placeholder={placeholder} value={value} onChange={onChange} background={background} border={border}></STextArea>
                     : <SInput name={name} id={name} disabled={disabled} placeholder={placeholder} value={value} onChange={onChange} type={type} background={background} border={border} >
                     </SInput>}
                 {icon}

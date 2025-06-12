@@ -1,14 +1,24 @@
 import styled from "styled-components";
 import { colors } from "../../styles/GlobalStyle";
 
+export const SFilmeDetalhes = styled.main`
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+`
+
 export const SDescricao = styled.section`
   display: flex;
-  gap: 10rem;
+  justify-content: center;
+  
+  /* gap: 10rem; */
+  max-width: 1450px;
 `;
 
 export const SImg = styled.img`
-  width: 12.5rem;
-  height: auto;
+  width: auto;
+  height: 70vh;
+  max-height: 350px;
   border-radius: 8px;
   margin: 1.5rem;
 `;
@@ -50,6 +60,7 @@ export const DescricaoContainer = styled.div`
 export const TextoDescricao = styled.article`
   flex: 1;
   margin-right: 2rem;
+  width: 600px;
 
   p {
     margin: 0.3rem 0;
