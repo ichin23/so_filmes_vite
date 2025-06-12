@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import { FilmeDetalhes } from "../../components/FilmeDetales";
-import { Header } from "../../components/Header"
 import { useFilmes } from "../../hooks/useFilmes";
 import { useNavigate, useParams } from "react-router-dom";
 import type { FilmeProps } from "../../types/filmeType";
+import { FilmeDetales } from "../../components/FilmeDetales";
+import { Header } from "../../components/Header";
+import add from "../../assets/Add.png";
+import { SAvaliar, SAlinhar } from "./styles";
 
 export function FilmeDetalesPage(){
 
@@ -33,6 +35,13 @@ export function FilmeDetalesPage(){
         <>
             <Header/>
             <FilmeDetalhes {...filme}/>
+            <SAlinhar>
+                <SAvaliar>
+                    <img src={add} alt="" />
+                    <span>Avaliar</span>
+                </SAvaliar>
+            </SAlinhar>
+            <p>Comentários Recentes</p>
         </>
     )
 }

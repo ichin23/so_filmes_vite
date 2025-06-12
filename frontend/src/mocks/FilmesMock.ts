@@ -14,6 +14,50 @@ export const mockFilmes: FilmeProps[] = [
     },
     {
         id: 2,
+        titulo: "Filme 2",
+        tituloOriginal: "Movie 2",
+        capa: "https://one-cinema.s3.sa-east-1.amazonaws.com/filmes/ainda-estou-aqui/13112024/342/capa-ainda-estou-aqui.jpg",
+        descricao: "bla",
+        avaliacao: 4.7,
+        ano: 2025,
+        generos: ["Comédia", "Animação"],
+        diretor: "Walter Salles",
+    },
+    {
+        id: 3,
+        titulo: "Robo Selvagem",
+        tituloOriginal: "The Wild Robot",
+        capa: "https://br.web.img2.acsta.net/img/cc/85/cc85122f8c6571afb0102ec2e27daae5.jpg",
+        descricao: "Um robô acorda em uma ilha deserta e precisa aprender a sobreviver.",
+        avaliacao: 4.8,
+        ano: 2024,
+        generos: ["Animação", "Aventura"],
+        diretor: "Chris Sanders",
+  },
+  {
+        id: 4,
+        titulo: "Robos",
+        tituloOriginal: "Robots",
+        capa: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT2pUKZaJYKiR5CPRlngBhulNvj14_vEx2zERUtO4xt5_dgFIWV",
+        descricao: "Em um mundo habitado por robôs, Rodney quer realizar seus sonhos como inventor.",
+        avaliacao: 4.6,
+        ano: 2005,
+        generos: ["Animação", "Comédia"],
+        diretor: "Chris Wedge",
+  },
+  {
+        id: 5,
+        titulo: "Robocop",
+        tituloOriginal: "Robocop",
+        capa: "https://i.pinimg.com/736x/f8/67/34/f86734d404613dfe6e717d0f16b6f95a.jpg",
+        descricao: "Um policial é transformado em um ciborgue para combater o crime em Detroit.",
+        avaliacao: 4.2,
+        ano: 2014,
+        generos: ["Ação", "Ficção científica"],
+        diretor: "José Padilha",
+  },
+  {
+        id: 6,
         titulo: "Vitória",
         tituloOriginal: "Vitória",
         capa: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5rQl3jElfG60HOtuaGQA90F52z2hO-7eBlg&s",
@@ -24,7 +68,7 @@ export const mockFilmes: FilmeProps[] = [
         diretor: "Diretor de Vitória",
     },
     {
-        id: 3,
+        id: 7,
         titulo: "Conclave",
         tituloOriginal: "Conclave",
         capa: "https://s2-gshow.glbimg.com/zyxVhr01unjcAhNU42wjp3MwyI4=/0x0:2000x3000/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_e84042ef78cb4708aeebdf1c68c6cbd6/internal_photos/bs/2025/Q/A/dCw9yLTz6TVZA7ltNtlw/m2h7hvagteptfolhbr4wemdg2vy.jpg",
@@ -35,7 +79,7 @@ export const mockFilmes: FilmeProps[] = [
         diretor: "Diretor de Conclave",
     },
     {
-        id: 4,
+        id: 8,
         titulo: "Flow",
         tituloOriginal: "Flow",
         capa: "https://br.web.img3.acsta.net/img/ae/76/ae760746629636d521b8e1aa5778935c.png",
@@ -46,7 +90,7 @@ export const mockFilmes: FilmeProps[] = [
         diretor: "Diretor de Flow",
     },
     {
-        id: 5,
+        id: 9,
         titulo: "Chico Bento",
         tituloOriginal: "Chico Bento",
         capa: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmP6ZaV33A4aTjLL5IiD_BSYgZ6iXvne9M3A&s",
@@ -57,7 +101,7 @@ export const mockFilmes: FilmeProps[] = [
         diretor: "Diretor de Chico Bento",
     },
     {
-        id: 6,
+        id: 10,
         titulo: "Viva",
         tituloOriginal: "Coco", // Assuming "Viva" is the Portuguese title for Disney's "Coco"
         capa: "https://play-lh.googleusercontent.com/Y8jmhSXKhy-FeQgfJLAPxNQJAbNxxbxFvq8g0DOz4pCBfPpB2vBiSFFvaFk4dbmDrELk",
@@ -68,7 +112,7 @@ export const mockFilmes: FilmeProps[] = [
         diretor: "Lee Unkrich", // Director of Coco
     },
     {
-        id: 7,
+        id: 11,
         titulo: "O Último Guardião",
         tituloOriginal: "The Last Guardian",
         capa: "https://br.web.img3.acsta.net/pictures/19/01/18/17/29/1137681.jpg",
@@ -79,7 +123,7 @@ export const mockFilmes: FilmeProps[] = [
         diretor: "Ana Paula Silva",
     },
     {
-        id: 8,
+        id: 12,
         titulo: "Segredos da Floresta",
         tituloOriginal: "Forest Secrets",
         capa: "https://m.media-amazon.com/images/M/MV5BNTk0YjczYWItZWM5Yi00YjljLWI3NzItODQ3NWQ2OTE0NjI2XkEyXkFqcGc@._V1_.jpg",
@@ -91,7 +135,7 @@ export const mockFilmes: FilmeProps[] = [
     },
     
     {
-        id: 9,
+        id: 13,
         titulo: "Cidade Submersa",
         tituloOriginal: "Sunken City",
         capa: "https://media.fstatic.com/SSZIr7VOwKwXXNU1ii7_Nk268vY=/322x478/smart/filters:format(webp)/media/movies/covers/2018/06/cidade_sob_o_mar_-_1953.jpg",
@@ -102,7 +146,7 @@ export const mockFilmes: FilmeProps[] = [
         diretor: "Ricardo Almeida",
     },
     {
-        id: 10,
+        id: 14,
         titulo: "O Enigma do Tempo",
         tituloOriginal: "The Time Enigma",
         capa: "https://media.fstatic.com/_0622bS83ZfXL2SaKpHBpI-R-Lk=/322x478/smart/filters:format(webp)/media/movies/covers/2014/09/enigma-do-tempo_t74312.jpg",
