@@ -42,7 +42,7 @@ export const FilmeProvider = ({ children }: FilmeProviderProps) => {
   };
 
   const getMaisAcessados = ()=>{
-    return filmes.filter((filme)=>filme.id in [1, 4, 6, 11, 2, 8, 10])
+    return filmes.filter((filme)=>filme.id in [1, 4, 6, 11, 7, 2, 8, 10])
   }
 
   const createFilme = async (filmeData: Omit<FilmeProps, "id" | "avaliacao">) => {
