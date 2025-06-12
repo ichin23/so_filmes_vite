@@ -1,5 +1,5 @@
 export interface UsuarioProps {
-    id: number
+    id: string
     nome: string
     usuario: string
     email: string
