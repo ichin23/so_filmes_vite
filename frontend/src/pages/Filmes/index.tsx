@@ -1,8 +1,6 @@
-import { FaSearch } from 'react-icons/fa'
 import { FilmeCard } from '../../components/FilmeCard'
-import { Input } from '../../components/Input'
 import { mockFilmes } from '../../mocks/FilmesMock'
-import { colors, GlobalStyle } from '../../styles/GlobalStyle'
+import { GlobalStyle } from '../../styles/GlobalStyle'
 import { Button } from '../../components/Button'
 import { GrAdd } from 'react-icons/gr'
 import { AvaliacaoCard } from '../../components/AvaliacaoCard'
@@ -11,14 +9,14 @@ import Avaliacao from '../../components/Avaliacao'
 import { Header } from '../../components/Header'
 
 
-export function FilmesPage(){
-    return(
-        <>
-          <GlobalStyle />
-          <Header/>
-          
-          <FilmeCard filmes={mockFilmes}></FilmeCard>
-          <Input
+export function FilmesPage() {
+  return (
+    <>
+      <GlobalStyle />
+      <Header />
+
+      <FilmeCard filmes={mockFilmes}></FilmeCard>
+      {/* <Input
             label='Login'
             placeholder='Seu email...'
             name="email"
@@ -35,13 +33,13 @@ export function FilmesPage(){
             icon={<FaSearch color={colors.white} />}
             placeholder='Busque...'
             name="search"
-            border={false} />
-    
-          <Button onPressed={() => { }}>Login</Button>
-          <Button icone={<GrAdd />} onPressed={() => { }}>Login</Button>
-          <Button vazado={true} onPressed={() => { }}>Login</Button>
-          <AvaliacaoCard avaliacoes={mockAvaliacoes} ></AvaliacaoCard>
-          <Avaliacao avaliacao={mockAvaliacoes[0]} />
-        </>
-    )
+            border={false} /> */}
+
+      <Button onPressed={() => { }}>Login</Button>
+      <Button icone={<GrAdd />} onPressed={() => { }}>Login</Button>
+      <Button vazado={true} onPressed={() => { }}>Login</Button>
+      <AvaliacaoCard avaliacoes={mockAvaliacoes} ></AvaliacaoCard>
+      <Avaliacao avaliacao={mockAvaliacoes[0]} />
+    </>
+  )
 }

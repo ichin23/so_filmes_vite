@@ -6,7 +6,7 @@ interface FilmeContextType {
   filmes: FilmeProps[],
   isLoading: boolean,
   getFilme: (id: number) => FilmeProps | undefined
-  getMaisAcessados: ()=>FilmeProps[]
+  getMaisAcessados: () => FilmeProps[]
   createFilme: (filme: Omit<FilmeProps, "id" | "avaliacao">) => Promise<FilmeProps>
   updateFilme: (id: number, filme: Partial<FilmeProps>) => Promise<FilmeProps>
   deleteFilme: (id: number) => Promise<void>
@@ -16,7 +16,7 @@ export const FilmeContext = createContext<FilmeContextType>({
   filmes: [],
   isLoading: true,
   getFilme: () => undefined,
-  getMaisAcessados: ()=> [],
+  getMaisAcessados: () => [],
   createFilme: async () => ({ id: -1, ano: 0, avaliacao: 0, capa: "", descricao: "", diretor: "", generos: [], titulo: "", tituloOriginal: "" }),
   updateFilme: async () => ({ id: -1, ano: 0, avaliacao: 0, capa: "", descricao: "", diretor: "", generos: [], titulo: "", tituloOriginal: "" }),
   deleteFilme: async () => { },
@@ -41,8 +41,8 @@ export const FilmeProvider = ({ children }: FilmeProviderProps) => {
     return filmes.find((filme) => filme.id === id);
   };
 
-  const getMaisAcessados = ()=>{
-    return filmes.filter((filme)=>filme.id in [1, 4, 6, 11, 7, 2, 8, 10])
+  const getMaisAcessados = () => {
+    return filmes.filter((filme) => filme.id in [1, 4, 6, 11, 7, 2, 8, 10])
   }
 
   const createFilme = async (filmeData: Omit<FilmeProps, "id" | "avaliacao">) => {
@@ -50,7 +50,7 @@ export const FilmeProvider = ({ children }: FilmeProviderProps) => {
       console.log("Inserindo fiulme")
       setTimeout(() => {
         const newFilme: FilmeProps = {
-          id: filmes.length+1,
+          id: filmes.length + 1,
           ...filmeData,
           // data: new Date().toISOString(), // você pode ativar isso se quiser
         };

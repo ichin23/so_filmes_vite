@@ -4,7 +4,7 @@ import { mockAvaliacoes } from "../../mocks/mockAvaliacoes"
 
 describe("AvaliacaoCard", ()=>{
     it("Exibe Corretamente", ()=>{
-        render(<AvaliacaoCard avaliacoes={mockAvaliacoes.avaliacoes}/>)
+        render(<AvaliacaoCard avaliacoes={mockAvaliacoes}/>)
         
         expect(screen.getByText("Autor 1")).toBeInTheDocument()
         expect(screen.getByText("Autor 2")).toBeInTheDocument()

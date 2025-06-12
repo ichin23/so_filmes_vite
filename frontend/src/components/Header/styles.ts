@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-//import { colors } from "../../styles/GlobalStyle";
+import { colors } from "../../styles/GlobalStyle";
 
 export const SHeader = styled.header`
     display: flex;
@@ -31,3 +31,15 @@ export const SIcon = styled.div`
     object-fit: contain;
   }
 `;
+
+export const FotoPerfil = styled.div`
+    background-color: ${colors.secondaryLight};
+    padding:20px;
+    border-radius: 50%;
+    width: 5rem;
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 45px;
+`
