@@ -7,7 +7,7 @@ export function AvaliacaoCard({avaliacoes}: AvaliacaoListProps) {
         <SAvaliacaoSection>
             {
                 avaliacoes.map((avaliacao) =>
-                    <SAvaliacaoCard>
+                    <SAvaliacaoCard key={avaliacao.id}>
 
                         <div>
                             <h6>{avaliacao.autor.nome}</h6>

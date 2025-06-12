@@ -2,26 +2,28 @@ import React, { createContext, useEffect, useState } from "react";
 import type { FilmeProps } from "../types/filmeType";
 import { mockFilmes } from "../mocks/FilmesMock";
 
-interface FilmeContextType{
-    filmes: FilmeProps[],
-    isLoading: boolean,
-    getFilme: (id: number)=>FilmeProps | undefined
-    createFilme: (filme: Omit<FilmeProps, "id" | "data">) => Promise<FilmeProps>
-    updateFilme: (id: number, filme: Partial<FilmeProps>) => Promise<FilmeProps>
-    deleteFilme: (id:number) => Promise<void>
+interface FilmeContextType {
+  filmes: FilmeProps[],
+  isLoading: boolean,
+  getFilme: (id: number) => FilmeProps | undefined
+  getMaisAcessados: ()=>FilmeProps[]
+  createFilme: (filme: Omit<FilmeProps, "id" | "avaliacao">) => Promise<FilmeProps>
+  updateFilme: (id: number, filme: Partial<FilmeProps>) => Promise<FilmeProps>
+  deleteFilme: (id: number) => Promise<void>
 }
 
 export const FilmeContext = createContext<FilmeContextType>({
-    filmes: [],
-    isLoading: true,
-    getFilme: ()=>undefined,
-    createFilme: async()=>({id:-1, ano:0, avaliacao: 0, capa:"", descricao:"",diretor:"",generos:[], titulo:"",tituloOriginal:""}),
-    updateFilme: async()=>({id:-1, ano:0, avaliacao: 0, capa:"", descricao:"",diretor:"",generos:[], titulo:"",tituloOriginal:""}),
-    deleteFilme: async()=>{},
+  filmes: [],
+  isLoading: true,
+  getFilme: () => undefined,
+  getMaisAcessados: ()=> [],
+  createFilme: async () => ({ id: -1, ano: 0, avaliacao: 0, capa: "", descricao: "", diretor: "", generos: [], titulo: "", tituloOriginal: "" }),
+  updateFilme: async () => ({ id: -1, ano: 0, avaliacao: 0, capa: "", descricao: "", diretor: "", generos: [], titulo: "", tituloOriginal: "" }),
+  deleteFilme: async () => { },
 })
 
-interface FilmeProviderProps{
-    children: React.ReactNode
+interface FilmeProviderProps {
+  children: React.ReactNode
 }
 
 export const FilmeProvider = ({ children }: FilmeProviderProps) => {
@@ -39,16 +41,23 @@ export const FilmeProvider = ({ children }: FilmeProviderProps) => {
     return filmes.find((filme) => filme.id === id);
   };
 
-  const createFilme = async (filmeData: Omit<FilmeProps, "id" | "data">) => {
+  const getMaisAcessados = ()=>{
+    return filmes.filter((filme)=>filme.id in [1, 4, 6, 11, 2, 8, 10])
+  }
+
+  const createFilme = async (filmeData: Omit<FilmeProps, "id" | "avaliacao">) => {
     return new Promise<FilmeProps>((resolve) => {
+      console.log("Inserindo fiulme")
       setTimeout(() => {
         const newFilme: FilmeProps = {
-          id: filmes.length,
+          id: filmes.length+1,
           ...filmeData,
           // data: new Date().toISOString(), // você pode ativar isso se quiser
         };
+        console.log(newFilme)
 
-        setFilmes((prevFilmes) => [...prevFilmes, newFilme]);
+        setFilmes([...filmes, newFilme]);
+        console.log(filmes)
         resolve(newFilme);
       }, 500);
     });
@@ -102,6 +111,7 @@ export const FilmeProvider = ({ children }: FilmeProviderProps) => {
         filmes,
         isLoading,
         getFilme,
+        getMaisAcessados,
         createFilme,
         updateFilme,
         deleteFilme,

@@ -7,8 +7,8 @@ export function FilmeCard({ filmes }: FilmesListaProps) {
     return (
         <SFilmeCard>
             {filmes.map((filme: FilmeProps) => (
-                <StyledLink to={`/filme/${filme.id}`}>
-                    <article key={filme.id}>
+                <StyledLink key={filme.id} to={`/filme/${filme.id}`}>
+                    <article >
                         <img src={filme.capa} alt={`Capa ${filme.id}`}></img>
                         <h6>{filme.titulo}</h6>
                         <div>
