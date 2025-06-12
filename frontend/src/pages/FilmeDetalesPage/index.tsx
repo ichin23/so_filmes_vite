@@ -6,8 +6,12 @@ import { FilmeDetalhes } from "../../components/FilmeDetales";
 import { Header } from "../../components/Header";
 import add from "../../assets/Add.png";
 import { SAvaliar, SAlinhar } from "./styles";
+import AvaliacaoIndv from "../../components/Avaliacao" 
+import { mockAvaliacoes } from "../../mocks/mockAvaliacoes";
+import { useAuth } from "../../hooks/useAuth";
 
 export function FilmeDetalesPage(){
+    const { currentUser} = useAuth();
 
     const {id} = useParams<{id:string}>()
     const navigate = useNavigate()
@@ -35,13 +39,23 @@ export function FilmeDetalesPage(){
         <>
             <Header/>
             <FilmeDetalhes {...filme}/>
-            <SAlinhar>
-                <SAvaliar>
+                <SAlinhar>
+                {currentUser ? (
+                    <SAvaliar onClick={() => {
+                    navigate("/perfil")
+                    }}>
                     <img src={add} alt="" />
                     <span>Avaliar</span>
-                </SAvaliar>
-            </SAlinhar>
+                    </SAvaliar>
+                ) : (
+                    <SAvaliar onClick={() => navigate("/login")}>
+                    <img src={add} alt="" />
+                    <span>avaliar</span>
+                    </SAvaliar>
+                )}
+                </SAlinhar>
             <p>Comentários Recentes</p>
+            <AvaliacaoIndv avaliacao={mockAvaliacoes[0]} />
         </>
     )
 }
