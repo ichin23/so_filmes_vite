@@ -1,8 +1,8 @@
-import type { AvaliacaoListProps } from "../../types/avaliacaoType";
+import type { AvaliacaoProps } from "../../types/avaliacaoType";
 import { ContadorEstrelas } from "../ContadorEstrelas";
 import { SAvaliacaoCard, SAvaliacaoSection } from "./styles";
 
-export function AvaliacaoCard({ avaliacoes }: AvaliacaoListProps) {
+export function AvaliacaoCard(avaliacoes: AvaliacaoProps[]) {
     return <>
         <SAvaliacaoSection>
             {

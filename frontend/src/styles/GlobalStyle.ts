@@ -5,6 +5,7 @@ export const colors = {
     primary: "#2B2D42",
     secondary: "#EF233C",
     secondaryLight: "#6E7081",
+    tertiary: "#1B4965",
     black: "#000",
     white: "#fff",
     yellow: "#D5C22D",
@@ -30,10 +31,9 @@ export const GlobalStyle = createGlobalStyle`
         color: ${colors.text};
         background-color: ${colors.background};
     }
-    input{
-        height: 35px;
+    input, textarea{
+        height: 40px;
         width: 90vw;
-        max-width: 250px;
         border-radius: 8px;
         border: none;
         margin: 5px 3px;

@@ -17,8 +17,8 @@ export default function AvaliacaoIndv({ avaliacao }: AvaliacaoIndvProps) {
             <div id="divider"></div>
             <div>
                 <div>
-                    Review por
-                    <h4>{avaliacao.autor.nome}</h4>
+                    Review de
+                    <h4>{avaliacao.filme.titulo}</h4>
                     <FaStar color={colors.yellow} />
                     <h4>{avaliacao.avaliacao}</h4>
                 </div>
