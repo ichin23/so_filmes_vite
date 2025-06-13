@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react"
 import { AvaliacaoCard } from "../../components/AvaliacaoCard"
 import { mockAvaliacoes } from "../../mocks/mockAvaliacoes"
 
+
 describe("AvaliacaoCard", ()=>{
     it("Exibe Corretamente", ()=>{
         render(<AvaliacaoCard avaliacoes={mockAvaliacoes}/>)

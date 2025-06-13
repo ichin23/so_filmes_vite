@@ -11,6 +11,7 @@ export default defineConfig({
     // Your Vitest specific configurations
     globals: true,
     environment: 'jsdom',
+    setupFiles: ['./src/setupTests.ts'],
     // ... other Vitest options
   },
 });

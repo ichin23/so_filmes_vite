@@ -12,7 +12,7 @@ describe("FilmeCard", () => {
         );
         const imgElement = screen.getByRole('img', { name: 'Capa 1' })
         expect(imgElement).toBeVisible();
-        expect(screen.getByText("Filme 1")).toBeInTheDocument();
+        expect(screen.getByText("Ainda Estou Aqui")).toBeInTheDocument();
         expect(screen.getByText("Filme 2")).toBeInTheDocument();
     })
 })
