@@ -2,7 +2,7 @@ name: CI/CD Deploy na Vercel
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build-and-test:
