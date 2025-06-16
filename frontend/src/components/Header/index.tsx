@@ -20,21 +20,29 @@ export function Header() {
     navigate("/login");
   };
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    navigate(`/buscar?q=${busca}`)
+  }
+
   return (
     <SHeader>
       <StyledLink to={"/"}>
         <Logo />
       </StyledLink>
       <SBusca>
-        <Input
-          maxWidth="280px"
-          icon={<FaSearch color={colors.white} />}
-          placeholder="Busque..."
-          name="search"
-          value={busca}
-          onChange={(e) => setBusca(e.target.value)}
-          border={false}
-        />
+        <form onSubmit={handleSubmit}>
+
+          <Input
+            maxWidth="280px"
+            icon={<FaSearch color={colors.white} />}
+            placeholder="Busque..."
+            name="search"
+            value={busca}
+            onChange={(e) => setBusca(e.target.value)}
+            border={false}
+          />
+        </form>
 
         {currentUser ? (
           <Button
@@ -42,7 +50,7 @@ export function Header() {
             onPressed={handleLogout}
             vazado={true}
             backgroundColor={colors.secondary}
-            // passando o ícone como filho
+          // passando o ícone como filho
           >
             <MdLogout size={24} color={colors.secondary} />
           </Button>

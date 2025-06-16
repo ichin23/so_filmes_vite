@@ -19,20 +19,20 @@ export function Login() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-        if (cadastro) {
+      if (cadastro) {
         await register(nome, email, senha);
-        } else {
+      } else {
         await login(email, senha);
-        }
-        navigate("/");
+      }
+      navigate("/");
     } catch (err: unknown) {
-        if (err instanceof Error) {
+      if (err instanceof Error) {
         alert(err.message);
-        } else {
+      } else {
         alert("Ocorreu um erro inesperado.");
-        }
+      }
     }
-    };
+  };
 
   return (
     <SLogin>

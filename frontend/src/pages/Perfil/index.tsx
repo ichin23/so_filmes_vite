@@ -6,7 +6,7 @@ import { FilmeCard } from "../../components/FilmeCard";
 import { mockFilmes } from "../../mocks/FilmesMock";
 import AvaliacaoIndv from "../../components/Avaliacao";
 import { mockAvaliacoes } from "../../mocks/mockAvaliacoes";
-import {Header} from "../../components/Header";
+import { Header } from "../../components/Header";
 import { useAuth } from "../../hooks/useAuth";
 import { Navigate } from "react-router-dom";
 
