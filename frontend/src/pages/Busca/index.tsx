@@ -3,16 +3,25 @@ import { mockFilmes } from "../../mocks/FilmesMock";
 import { FilmeCard } from "../../components/FilmeCard";
 import * as S from "./styles";
 import nothing from "../../assets/Nothing_Found.png"
+import { useFilmes } from "../../hooks/useFilmes";
+import { useEffect, useState } from "react";
+import type { FilmeProps } from "../../types/filmeType";
+import {  useSearchParams } from "react-router-dom";
 
-interface BuscaProps {
-  termo: string;
-}
+export function Busca() {
+  const {searchFilme} = useFilmes();
+  const [searchParams] = useSearchParams()
+  const [termo, setTermo] = useState<string | null>()
+  const [resultados, setResultados] = useState<FilmeProps[]>([]);
 
-export function Busca({ termo }: BuscaProps) {
-  const resultados = mockFilmes.filter((filme) =>
-    filme.titulo.toLowerCase().includes(termo.toLowerCase())
-  );
-  if (resultados.length === 0){
+  useEffect(()=>{
+    setTermo(searchParams.get("q"))
+    if(typeof termo === "string"){
+      setResultados(searchFilme(termo))
+    }
+  }, [searchFilme, setResultados, searchParams, termo])
+
+  if (resultados.length === 0 || termo===null){
       return(
         <>
         <Header />
