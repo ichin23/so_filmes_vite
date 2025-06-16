@@ -1,5 +1,4 @@
 import { Header } from "../../components/Header";
-import { mockFilmes } from "../../mocks/FilmesMock";
 import { FilmeCard } from "../../components/FilmeCard";
 import * as S from "./styles";
 import nothing from "../../assets/Nothing_Found.png"
