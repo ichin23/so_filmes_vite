@@ -16,7 +16,7 @@ export function RouteWeb() {
             <Route path="/login" element={<Login />} />
             <Route path="/perfil" element={<PerfilPage />} />
             <Route path="/teste" element={<FilmesPage />} />
-            <Route path="/buscar" element={<Busca termo="robo"/>}/>
+            <Route path="/buscar" element={<Busca termo="robo" />} />
         </Routes>
     )
 }

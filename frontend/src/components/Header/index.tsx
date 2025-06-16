@@ -42,7 +42,7 @@ export function Header() {
             onPressed={handleLogout}
             vazado={true}
             backgroundColor={colors.secondary}
-            // passando o ícone como filho
+          // passando o ícone como filho
           >
             <MdLogout size={24} color={colors.secondary} />
           </Button>
