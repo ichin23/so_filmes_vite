@@ -20,12 +20,19 @@ export function Header() {
     navigate("/login");
   };
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    navigate(`/buscar?q=${busca}`)
+  }
+
   return (
     <SHeader>
       <StyledLink to={"/"}>
         <Logo />
       </StyledLink>
       <SBusca>
+        <form onSubmit={handleSubmit}>
+
         <Input
           maxWidth="280px"
           icon={<FaSearch color={colors.white} />}
@@ -34,7 +41,8 @@ export function Header() {
           value={busca}
           onChange={(e) => setBusca(e.target.value)}
           border={false}
-        />
+          />
+        </form>
 
         {currentUser ? (
           <Button
