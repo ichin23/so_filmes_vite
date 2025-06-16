@@ -6,21 +6,12 @@ import { FilmeDetalhes } from "../../components/FilmeDetales";
 import { Header } from "../../components/Header";
 import add from "../../assets/Add.png";
 import { SAvaliar, SAlinhar } from "./styles";
-<<<<<<< HEAD
 import AvaliacaoIndv from "../../components/Avaliacao"
 import { mockAvaliacoes } from "../../mocks/mockAvaliacoes";
 import { useAuth } from "../../hooks/useAuth";
 
 export function FilmeDetalesPage() {
     const { currentUser } = useAuth();
-=======
-import AvaliacaoIndv from "../../components/Avaliacao"
-import { mockAvaliacoes } from "../../mocks/mockAvaliacoes";
-import { useAuth } from "../../hooks/useAuth";
-
-export function FilmeDetalesPage() {
-    const { currentUser } = useAuth();
->>>>>>> 5bc051bb6bf2d6c44e90ed0370375149c281ce3e
 
     const { id } = useParams<{ id: string }>()
     const navigate = useNavigate()

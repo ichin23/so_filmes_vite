@@ -6,10 +6,7 @@ interface FilmeContextType {
   filmes: FilmeProps[],
   isLoading: boolean,
   getFilme: (id: number) => FilmeProps | undefined
-<<<<<<< HEAD
   searchFilme: (termo: string) => FilmeProps[]
-=======
->>>>>>> 5bc051bb6bf2d6c44e90ed0370375149c281ce3e
   getMaisAcessados: () => FilmeProps[]
   createFilme: (filme: Omit<FilmeProps, "id" | "avaliacao">) => Promise<FilmeProps>
   updateFilme: (id: number, filme: Partial<FilmeProps>) => Promise<FilmeProps>
@@ -20,10 +17,7 @@ export const FilmeContext = createContext<FilmeContextType>({
   filmes: [],
   isLoading: true,
   getFilme: () => undefined,
-<<<<<<< HEAD
   searchFilme: () => [],
-=======
->>>>>>> 5bc051bb6bf2d6c44e90ed0370375149c281ce3e
   getMaisAcessados: () => [],
   createFilme: async () => ({ id: -1, ano: 0, avaliacao: 0, capa: "", descricao: "", diretor: "", generos: [], titulo: "", tituloOriginal: "" }),
   updateFilme: async () => ({ id: -1, ano: 0, avaliacao: 0, capa: "", descricao: "", diretor: "", generos: [], titulo: "", tituloOriginal: "" }),
