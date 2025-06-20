@@ -5,9 +5,9 @@ describe("ContadorEstrela", () => {
 
 
     it("Exibir 3 estrelas na tela", () => {
-        const qtd = 3
+        const qtd = 3.0
         render(<ContadorEstrelas value={qtd}/>)
 
-        expect(screen.getByText(qtd)).toBeInTheDocument()
+        expect(screen.getByText(qtd.toFixed(1))).toBeInTheDocument()
     })
 })
