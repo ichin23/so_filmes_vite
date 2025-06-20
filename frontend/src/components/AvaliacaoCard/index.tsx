@@ -11,7 +11,7 @@ export function AvaliacaoCard({avaliacoes}: AvaliacaoListProps) {
 
                         <div>
                             <h6>{avaliacao.autor.nome}</h6>
-                            <ContadorEstrelas quantidade={avaliacao.avaliacao} />
+                            <ContadorEstrelas value={avaliacao.avaliacao??0} />
                             <p>{avaliacao.comentario}</p>
                         </div>
                         <img src={avaliacao.filme.capa} />

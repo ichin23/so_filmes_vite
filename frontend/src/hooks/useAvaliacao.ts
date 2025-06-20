@@ -1,7 +1,7 @@
 "use client"
 
 import { useContext } from "react"
-import { AvaliacaoContext } from "../contexts/CometariosContext"
+import { AvaliacaoContext } from "../contexts/AvaliacaoContext"
 
 export const useAvaliacao = () => {
   const context = useContext(AvaliacaoContext)

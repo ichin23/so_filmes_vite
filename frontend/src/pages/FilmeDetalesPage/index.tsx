@@ -42,7 +42,7 @@ export function FilmeDetalesPage() {
             <SAlinhar>
                 {currentUser ? (
                     <SAvaliar onClick={() => {
-                        navigate("/perfil")
+                        navigate(`/avaliar/${filme.id}`)
                     }}>
                         <img src={add} alt="" />
                         <span>Avaliar</span>

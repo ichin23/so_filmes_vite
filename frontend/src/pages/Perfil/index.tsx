@@ -5,14 +5,23 @@ import { IoPerson } from "react-icons/io5";
 import { FilmeCard } from "../../components/FilmeCard";
 import { mockFilmes } from "../../mocks/FilmesMock";
 import AvaliacaoIndv from "../../components/Avaliacao";
-import { mockAvaliacoes } from "../../mocks/mockAvaliacoes";
 import { Header } from "../../components/Header";
 import { useAuth } from "../../hooks/useAuth";
 import { Navigate } from "react-router-dom";
+import { useAvaliacao } from "../../hooks/useAvaliacao";
+import { useEffect, useState } from "react";
+import type { AvaliacaoProps } from "../../types/avaliacaoType";
 
 
 export function PerfilPage() {
   const { currentUser, isLoading } = useAuth();
+  const { getAvaliacaoByUser } = useAvaliacao()
+  const [avaliacoes, setAvaliacoes] = useState<AvaliacaoProps[]>([])
+
+  useEffect(() => {
+    if (!currentUser) return;
+    setAvaliacoes(getAvaliacaoByUser(currentUser.id!))
+  }, [currentUser, getAvaliacaoByUser])
 
   // Enquanto carrega a autenticação, pode mostrar um loader ou nada
   if (isLoading) {
@@ -44,8 +53,12 @@ export function PerfilPage() {
           <Title>Favoritos</Title>
           <FilmeCard filmes={mockFilmes} />
           <Title>Reviews Recentes</Title>
-          <AvaliacaoIndv avaliacao={mockAvaliacoes[0]} />
-          <AvaliacaoIndv avaliacao={mockAvaliacoes[1]} />
+
+          {avaliacoes.map((avaliacao) => (
+            <AvaliacaoIndv key={avaliacao.id} avaliacao={avaliacao} />
+          ))}
+
+
         </SMain>
       </SPerfil>
     </>

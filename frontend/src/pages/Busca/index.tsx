@@ -6,6 +6,8 @@ import { useFilmes } from "../../hooks/useFilmes";
 import { useEffect, useState } from "react";
 import type { FilmeProps } from "../../types/filmeType";
 import {  useSearchParams } from "react-router-dom";
+import { StyledLink } from "../../components/StyledLink/styles";
+import { colors } from "../../styles/GlobalStyle";
 
 export function Busca() {
   const {searchFilme} = useFilmes();
@@ -28,6 +30,10 @@ export function Busca() {
           <div>
             <img src={nothing} alt="" />
             <h3>Nenhum resultado encontrado para "{termo}"</h3>
+            
+              <span>Deseja cadastrar um filme?</span>
+              <StyledLink color={colors.secondary} to="/criarFilme">Criar</StyledLink>
+            
           </div>
         </S.SNothing>
         </>

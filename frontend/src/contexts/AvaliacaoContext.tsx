@@ -10,6 +10,7 @@ interface AvaliacaoContextType {
   isLoading: boolean
   adicionarAvaliacao: (avaliacao: Omit<AvaliacaoProps, "id">) => Promise<AvaliacaoProps>
   removerAvaliacao: (id: number) => Promise<void>
+  getAvaliacaoByUser: (userId: number) => AvaliacaoProps[]
 }
 
 export const AvaliacaoContext = createContext<AvaliacaoContextType>({
@@ -17,7 +18,7 @@ export const AvaliacaoContext = createContext<AvaliacaoContextType>({
   isLoading: true,
   adicionarAvaliacao: async () => ({
     id: 0,
-    autor: { id: 0, nome: "", fotoPerfil: "" },
+    autor: { id: 0, nome: "", },
     avaliacao: 0,
     comentario: "",
     filme: {
@@ -32,7 +33,8 @@ export const AvaliacaoContext = createContext<AvaliacaoContextType>({
       avaliacao: 0,
     },
   }),
-  removerAvaliacao: async () => {},
+  removerAvaliacao: async () => { },
+  getAvaliacaoByUser: () => []
 })
 
 // ✅ Aqui é onde você usa ReactNode corretamente
@@ -60,7 +62,9 @@ export const AvaliacaoProvider = ({ children }: AvaliacaoProviderProps) => {
           id: Date.now(),
           ...novaAvaliacao,
         }
+        console.log(avaliacoes)
         setAvaliacoes((prev) => [...prev, nova])
+
         resolve(nova)
       }, 500)
     })
@@ -75,10 +79,22 @@ export const AvaliacaoProvider = ({ children }: AvaliacaoProviderProps) => {
     })
   }
 
+  const getAvaliacaoByUser = (userId: number): AvaliacaoProps[] => {
+    console.log(avaliacoes)
+    console.log(userId)
+    return avaliacoes.filter((a) => a.autor.id === userId)
+  }
+
+
   return (
     <AvaliacaoContext.Provider
-      value={{ avaliacoes, isLoading, adicionarAvaliacao, removerAvaliacao }}
-    >
+      value={{
+        avaliacoes,
+        isLoading,
+        adicionarAvaliacao,
+        removerAvaliacao,
+        getAvaliacaoByUser
+      }}>
       {children}
     </AvaliacaoContext.Provider>
   )

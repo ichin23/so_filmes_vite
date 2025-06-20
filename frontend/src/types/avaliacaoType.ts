@@ -4,7 +4,7 @@ import type { FilmeMostraProps } from "./filmeMostra"
 export interface AvaliacaoProps {
     id: number
     autor: AvaliadorProps
-    avaliacao: number
+    avaliacao?: number
     comentario: string
     filme: FilmeMostraProps
 }

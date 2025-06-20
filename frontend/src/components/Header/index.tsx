@@ -3,7 +3,7 @@ import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
 import { SBusca, SHeader } from "./styles";
 import { FaSearch } from 'react-icons/fa'
-import { MdLogout } from "react-icons/md";
+import { MdLogout, MdPerson } from "react-icons/md";
 import { colors } from "../../styles/GlobalStyle";
 import { StyledLink } from "../StyledLink/styles";
 import { useNavigate } from "react-router-dom";
@@ -43,8 +43,13 @@ export function Header() {
           border={false}
           />
         </form>
-
-        {currentUser ? (
+        
+        {currentUser ? <>
+          <Button
+          maxWidth="40px" // menor largura pra só ícone
+            onPressed={()=>navigate("/perfil")}
+            vazado={true}
+            backgroundColor={colors.secondary}><MdPerson /></Button>
           <Button
             maxWidth="40px" // menor largura pra só ícone
             onPressed={handleLogout}
@@ -54,7 +59,7 @@ export function Header() {
           >
             <MdLogout size={24} color={colors.secondary} />
           </Button>
-        ) : (
+        </> : (
           <Button
             maxWidth="80px"
             onPressed={() => navigate("/login")}
