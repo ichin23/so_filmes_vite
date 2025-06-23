@@ -66,7 +66,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
           reject(new Error("Email already in use"))
         } else {
           const newUser: UsuarioProps = {
-            id: `user-${Date.now()}`,
+            id: 1,
             nome,
             email,
             senha,

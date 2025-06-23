@@ -12,7 +12,7 @@ export default function AvaliacaoIndv({ avaliacao }: AvaliacaoIndvProps) {
     return <>
         <SAvaliacao>
             <div id="foto">
-                {avaliacao.autor.fotoPerfil == undefined ? <IoPerson /> : <img src={avaliacao.autor.fotoPerfil}></img>}
+                <IoPerson />
             </div>
             <div id="divider"></div>
             <div>
