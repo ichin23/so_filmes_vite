@@ -30,19 +30,24 @@ export const SConteudo = styled.div`
   margin: 1.5rem;
   
   h1 {
-    text-align: center;
+    
     font-size: 3rem;
 
     @media (max-width: 660px){
       font-size: 2rem;
+      text-align: center;
     }
   }
 
   aside {
     display: flex;
     align-items: center;
-    justify-content: center;
+    
     gap: 8rem;
+
+    @media (max-width: 660px){
+      justify-content: center;
+    }
   }
 
   p {
