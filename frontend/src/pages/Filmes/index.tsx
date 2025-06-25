@@ -5,7 +5,6 @@ import { Button } from '../../components/Button'
 import { GrAdd } from 'react-icons/gr'
 import { AvaliacaoCard } from '../../components/AvaliacaoCard'
 import { mockAvaliacoes } from '../../mocks/mockAvaliacoes'
-import Avaliacao from '../../components/AvaliacaoIndv'
 import { Header } from '../../components/Header'
 
 
@@ -39,7 +38,7 @@ export function FilmesPage() {
       <Button icone={<GrAdd />} onPressed={() => { }}>Login</Button>
       <Button vazado={true} onPressed={() => { }}>Login</Button>
       <AvaliacaoCard avaliacoes={mockAvaliacoes} ></AvaliacaoCard>
-      <Avaliacao avaliacao={mockAvaliacoes[0]} />
+      {/*<Avaliacao avaliacao={mockAvaliacoes[0]} />*/}
     </>
   )
 }
