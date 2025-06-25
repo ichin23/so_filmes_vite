@@ -34,3 +34,6 @@ export const SAlinhar = styled.div`
     justify-content: center;
 `
 
+export const SComentarios = styled.section`
+    padding: 10px;
+`

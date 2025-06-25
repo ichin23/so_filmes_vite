@@ -10,7 +10,7 @@ describe("AvaliacaoIndv", () => {
         render(
             <AvaliacaoIndv avaliacao={mockAvaliacoes[0]} onEditarClick={(e)=>edit(e)} currentUser={mockUsers[0]}/>
         )
-        expect(screen.getByText("Filme 1")).toBeInTheDocument()
+        expect(screen.getByText("Review de Ainda Estou Aqui")).toBeInTheDocument()
         expect(screen.getByText("4")).toBeInTheDocument()
         expect(screen.getByText("Filme muito bom!")).toBeInTheDocument()
     })

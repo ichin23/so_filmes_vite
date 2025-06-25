@@ -43,3 +43,8 @@ export const SAvaliacao = styled.article`
         margin: 5px 10px;
     }
 `
+
+export const SAcoesAvaliacao = styled.div`
+    display: flex;
+    
+`

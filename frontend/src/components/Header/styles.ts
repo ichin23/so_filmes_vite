@@ -2,10 +2,21 @@ import styled from 'styled-components'
 import { colors } from "../../styles/GlobalStyle";
 
 export const SHeader = styled.header`
-    display: flex;
-    align-items: center;
     border-bottom: 0.1rem solid #EDF2F4;
-    justify-content: space-between;
+
+    div {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      >button{
+        display:none;
+        
+        @media (max-width: 768px){
+          display: block;
+        }
+      }
+    }
     
 `
 
@@ -14,6 +25,10 @@ export const SBusca = styled.section`
   align-items: center;
   margin-right: 2.5rem;
   gap:3rem;
+
+  @media (max-width: 768px){
+    display: none;
+  }
 `
 
 export const SIcon = styled.div`
@@ -42,4 +57,18 @@ export const FotoPerfil = styled.div`
     justify-content: center;
     align-items: center;
     font-size: 45px;
+`
+
+interface SFormMobileProps {
+  menuAberto: boolean
+}
+
+export const SFormMobile = styled.form<SFormMobileProps>`
+  display: ${(props)=> props.menuAberto?"flex":"none"};
+  align-items: center;
+  flex-direction: column;
+
+  @media (min-width:768px){
+    display: none;
+  }
 `

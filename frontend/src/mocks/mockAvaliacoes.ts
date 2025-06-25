@@ -8,8 +8,8 @@ export const mockAvaliacoes: AvaliacaoProps[] = [
             avaliacao: 4,
             comentario: "Filme muito bom!",
             filme: {
-                id: 1,
-                titulo: "Filme 1",
+                id: 2,
+                titulo: "Ainda Estou Aqui",
                 capa: "https://one-cinema.s3.sa-east-1.amazonaws.com/filmes/ainda-estou-aqui/13112024/342/capa-ainda-estou-aqui.jpg",
                 avaliacao: 3.5
             }
@@ -21,7 +21,7 @@ export const mockAvaliacoes: AvaliacaoProps[] = [
             comentario: "Que filme",
             filme: {
                 id: 2,
-                titulo: "Filme 2",
+                titulo: "Ainda Estou Aqui",
                 capa: "https://one-cinema.s3.sa-east-1.amazonaws.com/filmes/ainda-estou-aqui/13112024/342/capa-ainda-estou-aqui.jpg",
                 avaliacao: 3.5
             }

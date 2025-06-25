@@ -9,8 +9,8 @@ export function AvaliacaoCard({ avaliacoes }: AvaliacaoListProps) {
         <SAvaliacaoSection>
             {
                 avaliacoes.map((avaliacao) =>
-                    <StyledLink to={`/filme/${avaliacao.filme.id}`}>
-                        <SAvaliacaoCard key={avaliacao.id}>
+                    <StyledLink to={`/filme/${avaliacao.filme.id}`} key={avaliacao.id}>
+                        <SAvaliacaoCard >
 
                             <div>
                                 <h6>{avaliacao.autor.nome}</h6>

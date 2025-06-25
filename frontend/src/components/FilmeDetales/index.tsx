@@ -1,12 +1,12 @@
-import { 
-  SDescricao, 
-  SImg, 
-  SConteudo, 
-  SEstrela, 
-  DescricaoContainer, 
-  TextoDescricao, 
-  EstrelaContainer, 
-  NumeroAvaliacao, 
+import {
+  SDescricao,
+  SImg,
+  SConteudo,
+  SEstrela,
+  DescricaoContainer,
+  TextoDescricao,
+  EstrelaContainer,
+  NumeroAvaliacao,
   SFilmeDetalhes
 } from "./styles";
 
@@ -16,7 +16,7 @@ import type { FilmeProps } from "../../types/filmeType";
 
 
 export function FilmeDetalhes(filme: FilmeProps) {
-  
+
   return (
     <SFilmeDetalhes>
       <SDescricao>
@@ -36,15 +36,15 @@ export function FilmeDetalhes(filme: FilmeProps) {
                 ))}
               </TextoDescricao>
 
-              <EstrelaContainer>
-                <SEstrela src={estrela} alt="Estrela" />
-                <NumeroAvaliacao>{filme.avaliacao}</NumeroAvaliacao>
-              </EstrelaContainer>
-            </DescricaoContainer>
 
+            </DescricaoContainer>
             <p>Gêneros: <span>{filme.generos.join(", ")}</span></p>
           </div>
         </SConteudo>
+        <EstrelaContainer>
+          <SEstrela src={estrela} alt="Estrela" />
+          <NumeroAvaliacao>{filme.avaliacao}</NumeroAvaliacao>
+        </EstrelaContainer>
       </SDescricao>
     </SFilmeDetalhes>
   );

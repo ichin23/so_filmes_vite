@@ -4,7 +4,7 @@ interface SButtonProps {
     width: string,
     height: string,
     maxWidth: string,
-    color: string,
+    color?: string,
     backgroundcolor: string,
     vazado: boolean,
     fontSize: string,
@@ -20,7 +20,7 @@ export const SButton = styled.button<SButtonProps>`
     display: flex;
     align-items: center;
     justify-content: center;
-    color: ${props => props.vazado ? props.backgroundcolor : colors.white};
+    color: ${props => props.color? props.color: props.vazado ? props.backgroundcolor : colors.white};
     font-size: ${props => props.fontSize};
     font-weight: ${props => props.fontWeight};
     border: ${props => props.vazado ? "3px solid " + props.backgroundcolor : "none"};

@@ -5,7 +5,7 @@ import type { FilmeProps } from "../../types/filmeType";
 import { FilmeDetalhes } from "../../components/FilmeDetales";
 import { Header } from "../../components/Header";
 import add from "../../assets/Add.png";
-import { SAvaliar, SAlinhar, SAvaliacaoUser } from "./styles";
+import { SAvaliar, SAlinhar, SAvaliacaoUser, SComentarios } from "./styles";
 import AvaliacaoIndv from "../../components/AvaliacaoIndv"
 import { useAuth } from "../../hooks/useAuth";
 import { useAvaliacao } from "../../hooks/useAvaliacao";
@@ -53,7 +53,7 @@ export function FilmeDetalesPage() {
             <FilmeDetalhes {...filme} />
             <SAlinhar>
                 {currentUser ? <SAvaliacaoUser>
-                    {avaliacaoUser ? <ContadorEstrelas value={avaliacaoUser.avaliacao!} mostraTodas={true} /> : null}
+                    {avaliacaoUser ? <><h3>Sua avaliação:</h3> <ContadorEstrelas value={avaliacaoUser.avaliacao!} mostraTodas={true} /></> : null}
 
                     <SAvaliar onClick={() => {
                         navigate(`/avaliar/${filme.id}`)
@@ -68,13 +68,15 @@ export function FilmeDetalesPage() {
                     </SAvaliar>
                 )}
             </SAlinhar>
+            <SComentarios>
             <p>Comentários Recentes</p>
-            {avaliacaoes ?
-                avaliacaoes.map((avaliacao) =>
-                    <AvaliacaoIndv onEditarClick={(id) => { navigate(`/avaliar/${id}`) }} avaliacao={avaliacao} key={avaliacao.id} currentUser={currentUser}/>
-                )
-                : <h5>Nenhuma avaliação encontrada!</h5>
-            }
+                {avaliacaoes ?
+                    avaliacaoes.map((avaliacao) =>
+                        <AvaliacaoIndv onEditarClick={(id) => { navigate(`/avaliar/${id}`) }} avaliacao={avaliacao} key={avaliacao.id} currentUser={currentUser}/>
+                    )
+                    : <h5>Nenhuma avaliação encontrada!</h5>
+                }
+            </SComentarios>
         </>
     )
 }
