@@ -5,10 +5,12 @@ import type { FilmeProps } from "../../types/filmeType";
 import { FilmeDetalhes } from "../../components/FilmeDetales";
 import { Header } from "../../components/Header";
 import add from "../../assets/Add.png";
-import { SAvaliar, SAlinhar } from "./styles";
+import { SAvaliar, SAlinhar, SAvaliacaoUser } from "./styles";
 import AvaliacaoIndv from "../../components/Avaliacao"
-import { mockAvaliacoes } from "../../mocks/mockAvaliacoes";
 import { useAuth } from "../../hooks/useAuth";
+import { useAvaliacao } from "../../hooks/useAvaliacao";
+import type { AvaliacaoProps } from "../../types/avaliacaoType";
+import { ContadorEstrelas } from "../../components/ContadorEstrelas";
 
 export function FilmeDetalesPage() {
     const { currentUser } = useAuth();
@@ -17,14 +19,24 @@ export function FilmeDetalesPage() {
     const navigate = useNavigate()
 
     const { getFilme } = useFilmes()
+    const { getAvaliacaoByFilme, getAvaliacaoByUserEFilme } = useAvaliacao()
 
     const [filme, setFilme] = useState<FilmeProps>()
+
+    const [avaliacaoes, setAvaliacoes]= useState<AvaliacaoProps[]>([])
+    const [avaliacaoUser, setAvaliacaoUser ] = useState<AvaliacaoProps>()
 
 
 
     useEffect(() => {
         setFilme(getFilme(Number(id)))
-    }, [id, getFilme])
+        if(filme){
+            setAvaliacoes(getAvaliacaoByFilme(filme.id))
+            if(currentUser){
+                setAvaliacaoUser(getAvaliacaoByUserEFilme(currentUser.id, filme.id))
+            }
+        }
+    }, [id, filme, getFilme, setAvaliacoes, getAvaliacaoByFilme, currentUser, setAvaliacaoUser, getAvaliacaoByUserEFilme])
 
     if (!filme) {
         return (
@@ -40,14 +52,16 @@ export function FilmeDetalesPage() {
             <Header />
             <FilmeDetalhes {...filme} />
             <SAlinhar>
-                {currentUser ? (
+                {currentUser ? <SAvaliacaoUser>
+                    {avaliacaoUser?<ContadorEstrelas value={avaliacaoUser.avaliacao!} mostraTodas={true}/>:null}
+                    
                     <SAvaliar onClick={() => {
                         navigate(`/avaliar/${filme.id}`)
                     }}>
                         <img src={add} alt="" />
-                        <span>Avaliar</span>
+                        <span>{avaliacaoUser?"Editar Avaliação" : "Avaliar"}</span>
                     </SAvaliar>
-                ) : (
+                </SAvaliacaoUser> : (
                     <SAvaliar onClick={() => navigate("/login")}>
                         <img src={add} alt="" />
                         <span>avaliar</span>
@@ -55,7 +69,12 @@ export function FilmeDetalesPage() {
                 )}
             </SAlinhar>
             <p>Comentários Recentes</p>
-            <AvaliacaoIndv avaliacao={mockAvaliacoes[0]} />
+            {avaliacaoes?
+                avaliacaoes.map((avaliacao)=>
+                    <AvaliacaoIndv avaliacao={avaliacao} key={avaliacao.id}/>
+                )
+                :<h5>Nenhuma avaliação encontrada!</h5>
+            }
         </>
     )
 }

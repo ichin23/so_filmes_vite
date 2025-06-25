@@ -22,6 +22,13 @@ export const SAvaliar = styled.button`
     }
 
 `
+
+export const SAvaliacaoUser = styled.div`
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+`
+
 export const SAlinhar = styled.div`
     display: flex;
     justify-content: center;

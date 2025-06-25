@@ -55,17 +55,14 @@ export const FilmeProvider = ({ children }: FilmeProviderProps) => {
 
   const createFilme = async (filmeData: Omit<FilmeProps, "id" | "avaliacao">) => {
     return new Promise<FilmeProps>((resolve) => {
-      console.log("Inserindo fiulme")
       setTimeout(() => {
         const newFilme: FilmeProps = {
           id: filmes.length + 1,
           ...filmeData,
           // data: new Date().toISOString(), // você pode ativar isso se quiser
         };
-        console.log(newFilme)
 
         setFilmes([...filmes, newFilme]);
-        console.log(filmes)
         resolve(newFilme);
       }, 500);
     });

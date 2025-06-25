@@ -66,6 +66,7 @@ export function Login() {
         <Input
           label={"Senha"}
           maxWidth="380px"
+          type="password"
           name="senha"
           value={senha}
           onChange={(e) => setSenha(e.target.value)}

@@ -39,4 +39,7 @@ export const SAvaliacao = styled.article`
         background-color: ${colors.secondary};
         margin: 0px 5px;
     }
+    button{
+        margin: 5px 10px;
+    }
 `

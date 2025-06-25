@@ -9,8 +9,11 @@ interface AvaliacaoContextType {
   avaliacoes: AvaliacaoProps[]
   isLoading: boolean
   adicionarAvaliacao: (avaliacao: Omit<AvaliacaoProps, "id">) => Promise<AvaliacaoProps>
+  editarAvaliacao: (avaliacao: AvaliacaoProps) => Promise<void>
   removerAvaliacao: (id: number) => Promise<void>
-  getAvaliacaoByUser: (userId: number) => AvaliacaoProps[]
+  getAvaliacaoByUser: (userId: number) => AvaliacaoProps[],
+  getAvaliacaoByFilme:(filmeId: number) => AvaliacaoProps[],
+  getAvaliacaoByUserEFilme: (userId: number, filmeId: number)=>AvaliacaoProps | undefined 
 }
 
 export const AvaliacaoContext = createContext<AvaliacaoContextType>({
@@ -33,8 +36,27 @@ export const AvaliacaoContext = createContext<AvaliacaoContextType>({
       avaliacao: 0,
     },
   }),
+  editarAvaliacao:async ()=>{},
   removerAvaliacao: async () => { },
-  getAvaliacaoByUser: () => []
+  getAvaliacaoByUser: () => [],
+  getAvaliacaoByFilme: ()=>[],
+  getAvaliacaoByUserEFilme: ()=>{return {
+    id: 0,
+    autor: { id: 0, nome: "", },
+    avaliacao: 0,
+    comentario: "",
+    filme: {
+      id: 0,
+      titulo: "",
+      tituloOriginal: "",
+      capa: "",
+      descricao: "",
+      ano: 0,
+      generos: [],
+      diretor: "",
+      avaliacao: 0,
+    },
+  }}
 })
 
 // ✅ Aqui é onde você usa ReactNode corretamente
@@ -62,10 +84,19 @@ export const AvaliacaoProvider = ({ children }: AvaliacaoProviderProps) => {
           id: Date.now(),
           ...novaAvaliacao,
         }
-        console.log(avaliacoes)
         setAvaliacoes((prev) => [...prev, nova])
 
         resolve(nova)
+      }, 500)
+    })
+  }
+
+  const editarAvaliacao = async(avaliacao: AvaliacaoProps): Promise<void>=>{
+    return new Promise((resolve)=>{
+      setTimeout(()=>{
+        const newAvaliacoes = avaliacoes.map((e)=>e.id==avaliacao.id? avaliacao : e)
+        setAvaliacoes(newAvaliacoes)
+        resolve()
       }, 500)
     })
   }
@@ -80,9 +111,15 @@ export const AvaliacaoProvider = ({ children }: AvaliacaoProviderProps) => {
   }
 
   const getAvaliacaoByUser = (userId: number): AvaliacaoProps[] => {
-    console.log(avaliacoes)
-    console.log(userId)
     return avaliacoes.filter((a) => a.autor.id === userId)
+  }
+
+  const getAvaliacaoByFilme = (filmeId: number): AvaliacaoProps[] => {
+    return avaliacoes.filter((a) => a.filme.id === filmeId)
+  }
+
+  const getAvaliacaoByUserEFilme=(userId:number, filmeId:number): AvaliacaoProps | undefined =>{
+    return avaliacoes.find((a)=>a.autor.id==userId && a.filme.id == filmeId)
   }
 
 
@@ -92,8 +129,11 @@ export const AvaliacaoProvider = ({ children }: AvaliacaoProviderProps) => {
         avaliacoes,
         isLoading,
         adicionarAvaliacao,
+        editarAvaliacao,
         removerAvaliacao,
-        getAvaliacaoByUser
+        getAvaliacaoByUser,
+        getAvaliacaoByFilme,
+        getAvaliacaoByUserEFilme
       }}>
       {children}
     </AvaliacaoContext.Provider>

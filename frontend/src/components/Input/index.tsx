@@ -31,8 +31,6 @@ export function Input({
     maxWidth = "none",
 }: InputProps) {
     
-   console.log(label)
-
     return <>
         <SInputComponent maxWidth={maxWidth} label={label}>
             <label htmlFor={name}>{label ?? name}</label>
