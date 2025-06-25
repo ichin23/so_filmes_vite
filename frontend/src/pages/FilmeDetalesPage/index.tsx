@@ -6,7 +6,7 @@ import { FilmeDetalhes } from "../../components/FilmeDetales";
 import { Header } from "../../components/Header";
 import add from "../../assets/Add.png";
 import { SAvaliar, SAlinhar, SAvaliacaoUser } from "./styles";
-import AvaliacaoIndv from "../../components/Avaliacao"
+import AvaliacaoIndv from "../../components/AvaliacaoIndv"
 import { useAuth } from "../../hooks/useAuth";
 import { useAvaliacao } from "../../hooks/useAvaliacao";
 import type { AvaliacaoProps } from "../../types/avaliacaoType";
@@ -23,16 +23,16 @@ export function FilmeDetalesPage() {
 
     const [filme, setFilme] = useState<FilmeProps>()
 
-    const [avaliacaoes, setAvaliacoes]= useState<AvaliacaoProps[]>([])
-    const [avaliacaoUser, setAvaliacaoUser ] = useState<AvaliacaoProps>()
+    const [avaliacaoes, setAvaliacoes] = useState<AvaliacaoProps[]>([])
+    const [avaliacaoUser, setAvaliacaoUser] = useState<AvaliacaoProps>()
 
 
 
     useEffect(() => {
         setFilme(getFilme(Number(id)))
-        if(filme){
+        if (filme) {
             setAvaliacoes(getAvaliacaoByFilme(filme.id))
-            if(currentUser){
+            if (currentUser) {
                 setAvaliacaoUser(getAvaliacaoByUserEFilme(currentUser.id, filme.id))
             }
         }
@@ -53,13 +53,13 @@ export function FilmeDetalesPage() {
             <FilmeDetalhes {...filme} />
             <SAlinhar>
                 {currentUser ? <SAvaliacaoUser>
-                    {avaliacaoUser?<ContadorEstrelas value={avaliacaoUser.avaliacao!} mostraTodas={true}/>:null}
-                    
+                    {avaliacaoUser ? <ContadorEstrelas value={avaliacaoUser.avaliacao!} mostraTodas={true} /> : null}
+
                     <SAvaliar onClick={() => {
                         navigate(`/avaliar/${filme.id}`)
                     }}>
                         <img src={add} alt="" />
-                        <span>{avaliacaoUser?"Editar Avaliação" : "Avaliar"}</span>
+                        <span>{avaliacaoUser ? "Editar Avaliação" : "Avaliar"}</span>
                     </SAvaliar>
                 </SAvaliacaoUser> : (
                     <SAvaliar onClick={() => navigate("/login")}>
@@ -69,11 +69,11 @@ export function FilmeDetalesPage() {
                 )}
             </SAlinhar>
             <p>Comentários Recentes</p>
-            {avaliacaoes?
-                avaliacaoes.map((avaliacao)=>
-                    <AvaliacaoIndv avaliacao={avaliacao} key={avaliacao.id}/>
+            {avaliacaoes ?
+                avaliacaoes.map((avaliacao) =>
+                    <AvaliacaoIndv onEditarClick={(id) => { navigate(`/avaliar/${id}`) }} avaliacao={avaliacao} key={avaliacao.id} currentUser={currentUser}/>
                 )
-                :<h5>Nenhuma avaliação encontrada!</h5>
+                : <h5>Nenhuma avaliação encontrada!</h5>
             }
         </>
     )

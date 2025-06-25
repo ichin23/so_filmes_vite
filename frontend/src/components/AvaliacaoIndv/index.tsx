@@ -3,18 +3,17 @@ import type { AvaliacaoProps } from "../../types/avaliacaoType";
 import { SAvaliacao } from "./styles";
 import { colors } from "../../styles/GlobalStyle";
 import { IoPerson } from "react-icons/io5";
-import { useAuth } from "../../hooks/useAuth";
 import { MdDelete, MdEdit } from "react-icons/md";
 import { Button } from "../Button";
-import { useNavigate } from "react-router-dom";
+import type { UsuarioProps } from "../../types/usuarioType";
 
 interface AvaliacaoIndvProps {
-    avaliacao: AvaliacaoProps
+    avaliacao: AvaliacaoProps,
+    onEditarClick: (id:number)=>void,
+    currentUser: UsuarioProps | null
 }
 
-export default function AvaliacaoIndv({ avaliacao }: AvaliacaoIndvProps) {
-    const { currentUser } = useAuth()
-    const navigate = useNavigate()
+export default function AvaliacaoIndv({ avaliacao, onEditarClick, currentUser }: AvaliacaoIndvProps) {
 
     return <>
         <SAvaliacao>
@@ -47,7 +46,8 @@ export default function AvaliacaoIndv({ avaliacao }: AvaliacaoIndvProps) {
                         backgroundColor={colors.white} 
                         vazado={true}
                         onPressed={()=>{
-                            navigate(`/avaliar/${avaliacao.filme.id}`)
+                            onEditarClick(avaliacao.filme.id)
+                            {/*navigate(`/avaliar/${avaliacao.filme.id}`)*/}
                         }}
                     >
                         <MdEdit color={colors.white} />

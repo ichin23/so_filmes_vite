@@ -4,10 +4,10 @@ import { FaStar } from "react-icons/fa";
 import { IoPerson } from "react-icons/io5";
 import { FilmeCard } from "../../components/FilmeCard";
 import { mockFilmes } from "../../mocks/FilmesMock";
-import AvaliacaoIndv from "../../components/Avaliacao";
+import AvaliacaoIndv from "../../components/AvaliacaoIndv";
 import { Header } from "../../components/Header";
 import { useAuth } from "../../hooks/useAuth";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useAvaliacao } from "../../hooks/useAvaliacao";
 import { useEffect, useState } from "react";
 import type { AvaliacaoProps } from "../../types/avaliacaoType";
@@ -16,6 +16,9 @@ import type { AvaliacaoProps } from "../../types/avaliacaoType";
 export function PerfilPage() {
   const { currentUser, isLoading } = useAuth();
   const { getAvaliacaoByUser } = useAvaliacao()
+
+  const navigate = useNavigate()
+
   const [avaliacoes, setAvaliacoes] = useState<AvaliacaoProps[]>([])
 
   useEffect(() => {
@@ -55,7 +58,7 @@ export function PerfilPage() {
           <Title>Reviews Recentes</Title>
 
           {avaliacoes.map((avaliacao) => (
-            <AvaliacaoIndv key={avaliacao.id} avaliacao={avaliacao} />
+            <AvaliacaoIndv key={avaliacao.id} avaliacao={avaliacao} onEditarClick={(id)=>{navigate(`/avaliar/${id}`)}} currentUser={currentUser}/>
           ))}
 
 

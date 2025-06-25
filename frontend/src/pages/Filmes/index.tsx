@@ -5,7 +5,7 @@ import { Button } from '../../components/Button'
 import { GrAdd } from 'react-icons/gr'
 import { AvaliacaoCard } from '../../components/AvaliacaoCard'
 import { mockAvaliacoes } from '../../mocks/mockAvaliacoes'
-import Avaliacao from '../../components/Avaliacao'
+import Avaliacao from '../../components/AvaliacaoIndv'
 import { Header } from '../../components/Header'
 
 
