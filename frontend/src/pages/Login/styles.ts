@@ -24,4 +24,8 @@ export const SButtonChange = styled.button`
     margin-top: 20px;
     font-size:16px;
     color: ${colors.secondary};
+    &{
+    cursor: pointer;
+    }
+
 `

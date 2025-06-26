@@ -6,6 +6,7 @@ import { SForm, SLogin } from "./styles";
 import { useNavigate } from "react-router-dom";
 
 export function EsqueciSenha() {
+  const [email, setEmail] = useState("");
   const [novaSenha, setNovaSenha] = useState("");
   const [confirmarSenha, setConfirmarSenha] = useState("");
 
@@ -44,6 +45,13 @@ export function EsqueciSenha() {
         <Logo />
         <h2>Redefinir Senha</h2>
         <Input
+          label="Email"
+          maxWidth="380px"
+          name="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <Input
           label="Nova Senha"
           type="password"
           maxWidth="380px"
@@ -59,7 +67,7 @@ export function EsqueciSenha() {
           value={confirmarSenha}
           onChange={(e) => setConfirmarSenha(e.target.value)}
         />
-        <Button type="submit">Salvar nova senha</Button>
+        <Button type="submit">Salvar</Button>
       </SForm>
     </SLogin>
   );

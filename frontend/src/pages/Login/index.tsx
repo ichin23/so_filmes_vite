@@ -72,6 +72,16 @@ export function Login() {
           onChange={(e) => setSenha(e.target.value)}
         />
         <Button type="submit">{cadastro ? "Criar" : "Logar"}</Button>
+        {!cadastro && (
+          <SButtonChange
+            type="button"
+            onClick={() => navigate("/esquecisenha")}
+            style={{ marginTop: "10px", fontSize: "14px" }}
+          >
+            Esqueci minha senha
+          </SButtonChange>
+        )}
+
         <span>
           {cadastro ? "Já possui conta? " : "Deseja cadastrar? "}
           <SButtonChange
@@ -82,6 +92,7 @@ export function Login() {
             {cadastro ? "Login" : "Cadastrar-se"}
           </SButtonChange>
         </span>
+
       </SForm>
     </SLogin>
   );
