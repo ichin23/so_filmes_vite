@@ -8,6 +8,7 @@ import { PerfilPage } from "../pages/Perfil";
 import { Login } from "../pages/Login";
 import { ProtectedRoute } from "./ProtectedRoutes";
 import { AvaliarPage } from "../pages/Avaliar";
+import { EsqueciSenha } from "../pages/EsqueciSenha";
 
 export function RouteWeb() {
     return (
@@ -33,6 +34,7 @@ export function RouteWeb() {
             
             <Route path="/teste" element={<FilmesPage />} />
             <Route path="/buscar" element={<Busca />} />
+            <Route path="/esquecisenha" element={<EsqueciSenha />} />
         </Routes>
     )
 }
