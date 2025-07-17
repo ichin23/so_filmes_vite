@@ -4,7 +4,7 @@ export const mockAvaliacoes: AvaliacaoProps[] = [
     
         {
             id: 1,
-            autor: {nome:"Autor 1", id: 1},
+            user: {nome:"Autor 1", id: 1},
             avaliacao: 4,
             comentario: "Filme muito bom!",
             filme: {
@@ -16,7 +16,7 @@ export const mockAvaliacoes: AvaliacaoProps[] = [
         },
         {
             id: 2,
-            autor: {nome:"Autor 2", id: 2},
+            user: {nome:"Autor 2", id: 2},
             avaliacao: 2.5,
             comentario: "Que filme",
             filme: {
