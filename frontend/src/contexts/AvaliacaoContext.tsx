@@ -2,30 +2,33 @@
 "use client"
 
 import { createContext, useState, useEffect, type ReactNode } from "react"
-import type { AvaliacaoProps } from "../types/avaliacaoType"
-import { mockAvaliacoes } from "../mocks/mockAvaliacoes"
+import type { AvaliacaoProps, AvaliacaoPropsInput } from "../types/avaliacaoType"
+import { apiAvaliacoes } from "../services"
 
 interface AvaliacaoContextType {
-  avaliacoes: AvaliacaoProps[]
+  //avaliacoes: AvaliacaoProps[]
   isLoading: boolean
-  adicionarAvaliacao: (avaliacao: Omit<AvaliacaoProps, "id">) => Promise<AvaliacaoProps>
-  editarAvaliacao: (avaliacao: AvaliacaoProps) => Promise<void>
-  removerAvaliacao: (id: number) => Promise<void>
-  getAvaliacaoByUser: (userId: number) => AvaliacaoProps[],
-  getAvaliacaoByFilme:(filmeId: number) => AvaliacaoProps[],
-  getAvaliacaoByUserEFilme: (userId: number, filmeId: number)=>AvaliacaoProps | undefined 
+  adicionarAvaliacao: (avaliacao: AvaliacaoPropsInput) => Promise<AvaliacaoProps>
+  editarAvaliacao: (avaliacao: AvaliacaoPropsInput) => Promise<void>
+  removerAvaliacao: (id: string) => Promise<void>
+  getAvaliacaoByUser: (userid: string) => Promise<AvaliacaoProps[]>,
+  getAvaliacaoByFilme: (filmeid: string) => Promise<AvaliacaoProps[]>,
+  getAvaliacaoByUserEFilme: (userid: string, filmeid: string) => Promise<AvaliacaoProps | undefined>
+  getAvaliacaoById: (avaliacaoId: string) => Promise<AvaliacaoProps | undefined>,
+  getUltimasAvaliacoes: () => Promise<AvaliacaoProps[]>,
+
 }
 
 export const AvaliacaoContext = createContext<AvaliacaoContextType>({
-  avaliacoes: [],
+  //avaliacoes: [],
   isLoading: true,
   adicionarAvaliacao: async () => ({
-    id: 0,
-    autor: { id: 0, nome: "", },
+    id: "",
+    user: { id: "", nome: "", email: "", username: "", media:0 },
     avaliacao: 0,
     comentario: "",
     filme: {
-      id: 0,
+      id: "",
       titulo: "",
       tituloOriginal: "",
       capa: "",
@@ -36,27 +39,13 @@ export const AvaliacaoContext = createContext<AvaliacaoContextType>({
       avaliacao: 0,
     },
   }),
-  editarAvaliacao:async ()=>{},
+  editarAvaliacao: async () => { },
   removerAvaliacao: async () => { },
-  getAvaliacaoByUser: () => [],
-  getAvaliacaoByFilme: ()=>[],
-  getAvaliacaoByUserEFilme: ()=>{return {
-    id: 0,
-    autor: { id: 0, nome: "", },
-    avaliacao: 0,
-    comentario: "",
-    filme: {
-      id: 0,
-      titulo: "",
-      tituloOriginal: "",
-      capa: "",
-      descricao: "",
-      ano: 0,
-      generos: [],
-      diretor: "",
-      avaliacao: 0,
-    },
-  }}
+  getAvaliacaoByUser: () => Promise.resolve([]),
+  getAvaliacaoByFilme: () => Promise.resolve([]),
+  getAvaliacaoByUserEFilme: () => Promise.resolve(undefined),
+  getAvaliacaoById: () => Promise.resolve(undefined),
+  getUltimasAvaliacoes: () => Promise.resolve([])
 })
 
 // ✅ Aqui é onde você usa ReactNode corretamente
@@ -65,75 +54,119 @@ interface AvaliacaoProviderProps {
 }
 
 export const AvaliacaoProvider = ({ children }: AvaliacaoProviderProps) => {
-  const [avaliacoes, setAvaliacoes] = useState<AvaliacaoProps[]>([])
+  // const [avaliacoes, setAvaliacoes] = useState<AvaliacaoProps[]>([])
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     setTimeout(() => {
-      setAvaliacoes(mockAvaliacoes)
+      //setAvaliacoes(mockAvaliacoes)
       setIsLoading(false)
     }, 500)
   }, [])
 
   const adicionarAvaliacao = async (
-    novaAvaliacao: Omit<AvaliacaoProps, "id">
+    novaAvaliacao: AvaliacaoPropsInput
   ): Promise<AvaliacaoProps> => {
     return new Promise((resolve) => {
-      setTimeout(() => {
-        const nova: AvaliacaoProps = {
-          id: Date.now(),
-          ...novaAvaliacao,
+      setTimeout(async () => {
+
+        const response = await apiAvaliacoes.create_avaliacao(novaAvaliacao)
+
+        resolve(response.data)
+      }, 500)
+    })
+  }
+
+  const editarAvaliacao = async (avaliacao: AvaliacaoPropsInput): Promise<void> => {
+    return new Promise((resolve, reject) => {
+      setTimeout(async () => {
+        if (!avaliacao.id) {
+          return reject()
         }
-        setAvaliacoes((prev) => [...prev, nova])
-
-        resolve(nova)
-      }, 500)
-    })
-  }
-
-  const editarAvaliacao = async(avaliacao: AvaliacaoProps): Promise<void>=>{
-    return new Promise((resolve)=>{
-      setTimeout(()=>{
-        const newAvaliacoes = avaliacoes.map((e)=>e.id==avaliacao.id? avaliacao : e)
-        setAvaliacoes(newAvaliacoes)
+        const response = await apiAvaliacoes.update_avaliacao(avaliacao.id, avaliacao)
+        avaliacao = response.data
+        if (!avaliacao) {
+          return reject()
+        }
         resolve()
       }, 500)
     })
   }
 
-  const removerAvaliacao = async (id: number): Promise<void> => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        setAvaliacoes((prev) => prev.filter((a) => a.id !== id))
-        resolve()
+  const removerAvaliacao = async (id: string): Promise<void> => {
+    return new Promise((resolve, reject) => {
+      setTimeout(async () => {
+        const response = await apiAvaliacoes.delete_avaliacao(id)
+        if (response.status === 200) {
+          resolve()
+        } else {
+          reject(response.data)
+        }
       }, 500)
     })
   }
 
-  const getAvaliacaoByUser = (userId: number): AvaliacaoProps[] => {
-    return avaliacoes.filter((a) => a.autor.id === userId)
+  const getAvaliacaoByUser = (): Promise<AvaliacaoProps[]> => {
+    return new Promise<AvaliacaoProps[]>((resolve) => {
+      setTimeout(async () => {
+        const response = await apiAvaliacoes.get_avaliacoes_by_user()
+        resolve(response.data)
+      })
+    })
   }
 
-  const getAvaliacaoByFilme = (filmeId: number): AvaliacaoProps[] => {
-    return avaliacoes.filter((a) => a.filme.id === filmeId)
+  const getAvaliacaoByFilme = (filmeid: string): Promise<AvaliacaoProps[]> => {
+    return new Promise<AvaliacaoProps[]>((resolve) => {
+
+      setTimeout(async () => {
+        const response = await apiAvaliacoes.get_avaliacoes_by_filme(filmeid)
+        resolve(response.data)
+      })
+    })
   }
 
-  const getAvaliacaoByUserEFilme=(userId:number, filmeId:number): AvaliacaoProps | undefined =>{
-    return avaliacoes.find((a)=>a.autor.id==userId && a.filme.id == filmeId)
+  const getAvaliacaoByUserEFilme = (user_id: string, filme_id: string): Promise<AvaliacaoProps | undefined> => {
+    return new Promise<AvaliacaoProps | undefined>((resolve) => {
+      setTimeout(async () => {
+        const response = await apiAvaliacoes.get_avaliacao_by_user_e_filme({ user_id, filme_id })
+        resolve(response.data)
+      })
+    })
+  }
+
+  const getAvaliacaoById = (avaliacaoId: string): Promise<AvaliacaoProps | undefined> => {
+    return new Promise<AvaliacaoProps | undefined>((resolve) => {
+      setTimeout(async () => {
+        const response = await apiAvaliacoes.get_avaliacao_by_id(avaliacaoId)
+        resolve(response.data)
+      })
+    })
+  }
+
+  const getUltimasAvaliacoes = (): Promise<AvaliacaoProps[]> => {
+    return new Promise<AvaliacaoProps[]>((resolve) => {
+
+      setTimeout(async () => {
+        const response = await apiAvaliacoes.get_ultimas_avaliacoes()
+        resolve(response.data)
+      })
+    })
   }
 
 
   return (
     <AvaliacaoContext.Provider
       value={{
-        avaliacoes,
+        //avaliacoes,
         isLoading,
         adicionarAvaliacao,
         editarAvaliacao,
         removerAvaliacao,
         getAvaliacaoByUser,
         getAvaliacaoByFilme,
-        getAvaliacaoByUserEFilme
+        getAvaliacaoByUserEFilme,
+        getAvaliacaoById,
+        getUltimasAvaliacoes,
       }}>
       {children}
     </AvaliacaoContext.Provider>

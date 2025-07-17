@@ -7,15 +7,32 @@ import { useFilmes } from "../../hooks/useFilmes";
 import { useEffect, useState } from "react";
 import type { FilmeProps } from "../../types/filmeType";
 import { useAvaliacao } from "../../hooks/useAvaliacao";
+import type { AvaliacaoProps } from "../../types/avaliacaoType";
 
 export function Home() {
-    const { filmes, getMaisAcessados } = useFilmes()
-    const {avaliacoes} = useAvaliacao()
+    const { getUltimos, getMaisAcessados } = useFilmes()
+    const {getUltimasAvaliacoes} = useAvaliacao()
     const [maisAcessados, setMaisAcessados] = useState<FilmeProps[]>([])
+    const [avaliacoes, setUltimasAvaliacoes] = useState<AvaliacaoProps[]>([])
+    const [ultimosFilmes, setUltimos] = useState<FilmeProps[]>([])
 
     useEffect(() => {
-        setMaisAcessados(getMaisAcessados())
-    }, [getMaisAcessados])
+        const fetchMaisAcessados = async () => {
+            const maisAcessados = await getMaisAcessados()
+            setMaisAcessados(maisAcessados)
+        }
+        const fetchUltimos = async () => {
+            const ultimos = await getUltimos()
+            setUltimos(ultimos)
+        }
+        const fetchAvaliacoes = async () => {
+            const avaliacoes = await getUltimasAvaliacoes()
+            setUltimasAvaliacoes(avaliacoes)
+        }
+        fetchAvaliacoes()
+        fetchMaisAcessados()
+        fetchUltimos()
+    }, [getMaisAcessados, getUltimos, getUltimasAvaliacoes])
 
     return <>
         <Header />
@@ -24,8 +41,8 @@ export function Home() {
             <FilmeCard filmes={maisAcessados} />
             <Title>Comentários Recentes</Title>
             <AvaliacaoCard avaliacoes={avaliacoes} />
-            <Title>Seus Favoritos</Title>
-            <FilmeCard filmes={filmes} />
+            <Title>Últimos Filmes</Title>
+            <FilmeCard filmes={ultimosFilmes} />
             {/* <StyledLink to="/criarFilme">Criar filme</StyledLink> */}
         </SHome>
     </>

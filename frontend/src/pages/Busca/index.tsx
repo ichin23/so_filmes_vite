@@ -15,10 +15,14 @@ export function Busca() {
   const [termo, setTermo] = useState<string | null>()
   const [resultados, setResultados] = useState<FilmeProps[]>([]);
 
-  useEffect(()=>{
+  useEffect(() => {
     setTermo(searchParams.get("q"))
     if(typeof termo === "string"){
-      setResultados(searchFilme(termo))
+      const fetchFilmes = async () => {
+        const filmes = await searchFilme(termo)
+        setResultados(filmes)
+      }
+      fetchFilmes()
     }
   }, [searchFilme, setResultados, searchParams, termo])
 

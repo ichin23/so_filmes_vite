@@ -1,7 +1,8 @@
 export interface UsuarioProps {
-    id: number
+    id: string
     nome: string
-    usuario: string
+    username: string
     email: string
-    senha?: string
+    senha?: string,
+    media: number
 }

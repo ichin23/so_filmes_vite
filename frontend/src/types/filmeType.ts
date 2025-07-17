@@ -1,5 +1,5 @@
 export interface FilmeProps {
-    id: number
+    id: string
     titulo: string
     tituloOriginal: string
     capa: string

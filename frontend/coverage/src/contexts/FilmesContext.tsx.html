@@ -334,12 +334,12 @@ import type { FilmeProps } from "../types/filmeType";
 interface FilmeContextType {
   filmes: FilmeProps[],
   isLoading: boolean,
-  getFilme: (id: number) =&gt; FilmeProps | undefined
+  getFilme: (id: string) =&gt; FilmeProps | undefined
   searchFilme: (termo: string) =&gt; FilmeProps[]
   getMaisAcessados: () =&gt; FilmeProps[]
   createFilme: (filme: Omit&lt;FilmeProps, "id" | "avaliacao"&gt;) =&gt; Promise&lt;FilmeProps&gt;
-  updateFilme: (id: number, filme: Partial&lt;FilmeProps&gt;) =&gt; Promise&lt;FilmeProps&gt;
-  deleteFilme: (id: number) =&gt; Promise&lt;void&gt;
+  updateFilme: (id: string, filme: Partial&lt;FilmeProps&gt;) =&gt; Promise&lt;FilmeProps&gt;
+  deleteFilme: (id: string) =&gt; Promise&lt;void&gt;
 }
 &nbsp;
 <span class="cstat-no" title="statement not covered" >export const FilmeContext = createContext&lt;FilmeContextType&gt;({</span>
@@ -368,7 +368,7 @@ interface FilmeProviderProps {
 <span class="cstat-no" title="statement not covered" >    }, 500);</span>
 <span class="cstat-no" title="statement not covered" >  }, []);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  const getFilme = (id: number) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  const getFilme = (id: string) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    return filmes.find((filme) =&gt; filme.id === id);</span>
 <span class="cstat-no" title="statement not covered" >  };</span>
 &nbsp;
@@ -400,7 +400,7 @@ interface FilmeProviderProps {
 <span class="cstat-no" title="statement not covered" >    });</span>
 <span class="cstat-no" title="statement not covered" >  };</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  const updateFilme = async (id: number, filmeData: Partial&lt;FilmeProps&gt;) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  const updateFilme = async (id: string, filmeData: Partial&lt;FilmeProps&gt;) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    return new Promise&lt;FilmeProps&gt;((resolve, reject) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >      setTimeout(() =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >        const filmeIndex = filmes.findIndex((filme) =&gt; filme.id === id);</span>
@@ -424,7 +424,7 @@ interface FilmeProviderProps {
 <span class="cstat-no" title="statement not covered" >    });</span>
 <span class="cstat-no" title="statement not covered" >  };</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  const deleteFilme = async (id: number) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  const deleteFilme = async (id: string) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    return new Promise&lt;void&gt;((resolve, reject) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >      setTimeout(() =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >        const filmeIndex = filmes.findIndex((filme) =&gt; filme.id === id);</span>

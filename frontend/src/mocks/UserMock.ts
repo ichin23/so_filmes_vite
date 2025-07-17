@@ -1,5 +1,7 @@
 import type { UsuarioProps } from "../types/usuarioType"
 
+
+
 export const mockUsers: UsuarioProps[] = [
   {
     id: 1,

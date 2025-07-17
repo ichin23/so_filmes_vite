@@ -6,14 +6,25 @@ import { IoPerson } from "react-icons/io5";
 import { MdDelete, MdEdit } from "react-icons/md";
 import { Button } from "../Button";
 import type { UsuarioProps } from "../../types/usuarioType";
+import { useAvaliacao } from "../../hooks/useAvaliacao";
 
 interface AvaliacaoIndvProps {
     avaliacao: AvaliacaoProps,
-    onEditarClick: (id:number)=>void,
+    onEditarClick: (id:string)=>void,
     currentUser: UsuarioProps | null
 }
 
 export default function AvaliacaoIndv({ avaliacao, onEditarClick, currentUser }: AvaliacaoIndvProps) {
+    const {removerAvaliacao} = useAvaliacao()
+
+    const fetch_delete = async () => {
+        if (window.confirm("Deseja realmente excluir essa Avaliação?")){
+
+            await removerAvaliacao(avaliacao.id)
+            window.location.reload()
+        }
+    }
+
 
     return <>
         <SAvaliacao>
@@ -28,14 +39,14 @@ export default function AvaliacaoIndv({ avaliacao, onEditarClick, currentUser }:
                     <h4>{avaliacao.avaliacao}</h4>
                 </div>
                 <p>{avaliacao.comentario ?? "Sem comentário"}</p>
-                {currentUser?.id == avaliacao.autor.id ?
+                {currentUser?.id == avaliacao.user.id ?
                 
                 <SAcoesAvaliacao>
                         <Button maxWidth="85px" 
                         height="25px"
                             backgroundColor={colors.error} 
                             vazado={true}
-                            onPressed={()=>{window.confirm("Deseja realmente excluir essa Avaliação?")}}
+                            onPressed={()=>{fetch_delete()}}
                         >
                             <MdDelete color={colors.error} /> Excluir
                         </Button>

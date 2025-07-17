@@ -1,5 +1,5 @@
 export interface AvaliadorProps {
     nome: string
-    id: number
+    id: string
     //fotoPerfil?: string
 }

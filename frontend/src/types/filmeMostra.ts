@@ -1,5 +1,5 @@
-export interface FilmeMostraProps{
-    id: number 
+export interface FilmeMostraProps {
+    id: string
     titulo: string
     capa: string,
     avaliacao?: number

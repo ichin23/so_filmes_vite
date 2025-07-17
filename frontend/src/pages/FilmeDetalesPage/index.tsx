@@ -29,19 +29,32 @@ export function FilmeDetalesPage() {
 
 
     useEffect(() => {
-        setFilme(getFilme(Number(id)))
-        if (filme) {
-            setAvaliacoes(getAvaliacaoByFilme(filme.id))
+        if (!id) {
+            return
+        }
+        const fetchFilmes = async () => {
+            const filmes = await getFilme(id)
+            setFilme(filmes)
+        }
+        const fetchAvaliacoes = async () => {
+            const avaliacoes = await getAvaliacaoByFilme(id)
+            setAvaliacoes(avaliacoes)
+        }
+        const fetchAvaliacaoUser = async () => {
             if (currentUser) {
-                setAvaliacaoUser(getAvaliacaoByUserEFilme(currentUser.id, filme.id))
+                const avaliacao = await getAvaliacaoByUserEFilme(currentUser.id, id)
+                setAvaliacaoUser(avaliacao)
             }
         }
-    }, [id, filme, getFilme, setAvaliacoes, getAvaliacaoByFilme, currentUser, setAvaliacaoUser, getAvaliacaoByUserEFilme])
+        fetchAvaliacaoUser()
+        fetchAvaliacoes()
+        fetchFilmes()
+    }, [id, getFilme, getAvaliacaoByFilme, currentUser, getAvaliacaoByUserEFilme])
 
     if (!filme) {
         return (
             <>
-                <h1>Post não encontrado</h1>
+                <h1>Filme não encontrado</h1>
                 <button onClick={() => navigate("/")}>Voltar para a Home</button>
             </>
         )
@@ -69,10 +82,10 @@ export function FilmeDetalesPage() {
                 )}
             </SAlinhar>
             <SComentarios>
-            <p>Comentários Recentes</p>
+                <p>Comentários Recentes</p>
                 {avaliacaoes ?
                     avaliacaoes.map((avaliacao) =>
-                        <AvaliacaoIndv onEditarClick={(id) => { navigate(`/avaliar/${id}`) }} avaliacao={avaliacao} key={avaliacao.id} currentUser={currentUser}/>
+                        <AvaliacaoIndv onEditarClick={(id) => { navigate(`/avaliar/${id}`) }} avaliacao={avaliacao} key={avaliacao.id} currentUser={currentUser} />
                     )
                     : <h5>Nenhuma avaliação encontrada!</h5>
                 }

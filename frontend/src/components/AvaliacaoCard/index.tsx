@@ -13,7 +13,7 @@ export function AvaliacaoCard({ avaliacoes }: AvaliacaoListProps) {
                         <SAvaliacaoCard >
 
                             <div>
-                                <h6>{avaliacao.autor.nome}</h6>
+                                <h6>{avaliacao.user.nome}</h6>
                                 <ContadorEstrelas value={avaliacao.avaliacao ?? 0} />
                                 <p>{avaliacao.comentario}</p>
                             </div>

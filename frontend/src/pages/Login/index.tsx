@@ -19,8 +19,9 @@ export function Login() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
+      console.log(cadastro)
       if (cadastro) {
-        await register(nome, email, senha);
+        await register(nome, username, email, senha);
       } else {
         await login(email, senha);
       }

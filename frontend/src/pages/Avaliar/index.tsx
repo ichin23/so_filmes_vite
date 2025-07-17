@@ -15,7 +15,7 @@ export function AvaliarPage() {
     const { currentUser } = useAuth();
 
     const { adicionarAvaliacao, editarAvaliacao, getAvaliacaoByUserEFilme } = useAvaliacao()
-    
+
 
     const { id } = useParams<{ id: string }>()
     const navigate = useNavigate()
@@ -32,36 +32,53 @@ export function AvaliarPage() {
 
 
     useEffect(() => {
-        setFilme(getFilme(Number(id)))
-        setPreAvaliacao(getAvaliacaoByUserEFilme(currentUser!.id, Number(id)))
-        console.log(preAvaliacao)
-        if(preAvaliacao){
-            setEstrelas(preAvaliacao.avaliacao!)
-            setReview(preAvaliacao.comentario)
+        if (!id) {
+            return
         }
-    }, [id, getFilme, currentUser, getAvaliacaoByUserEFilme, preAvaliacao])
+        const fetchFilmes = async () => {
+            const filmes = await getFilme(id)
+            setFilme(filmes)
+        }
 
+        const fetchAvaliacao = async () => {
+            if (!currentUser) {
+                return
+            }
+            const avaliacao = await getAvaliacaoByUserEFilme(currentUser.id, id)
+            setPreAvaliacao(avaliacao)
+            if (avaliacao) {
+                setEstrelas(avaliacao.avaliacao!)
+                setReview(avaliacao.comentario)
+            }
+        }
 
-    const handleSubmit = async (e:FormEvent) => {
+        fetchAvaliacao()
+        fetchFilmes()
+
+        
+    }, [id, getFilme, currentUser, getAvaliacaoByUserEFilme])
+
+    if (!id || !filme){
+        return <>
+            <h3>Passe um filme válido para avaliar!</h3>
+        </>
+    }
+
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
-        try{
-            if(preAvaliacao){
-                editarAvaliacao({...preAvaliacao, avaliacao: estrelas, comentario: review})
-            }else{
+        try {
+            if (preAvaliacao) {
+                await editarAvaliacao({ ...preAvaliacao, avaliacao: estrelas, comentario: review, filme_id: filme!.id })
+            } else {
 
-                adicionarAvaliacao({
-                    autor: { id: Number(currentUser!.id), nome: currentUser!.nome },
+                await adicionarAvaliacao({
+                    
+                    filme_id: filme!.id,
                     avaliacao: estrelas,
                     comentario: review,
-                    filme: {
-                        id: filme!.id,
-                        titulo: filme!.titulo,
-                        capa: filme!.capa,
-                        avaliacao: filme!.avaliacao,
-                    },
                 });
             }
-        }catch(e){
+        } catch (e) {
             console.error(e)
         }
         navigate("/perfil")
@@ -85,7 +102,7 @@ export function AvaliarPage() {
                 <Input name="review" label="Review" maxWidth="400px" textarea={true} value={review} onChange={(e) => setReview(e.target.value)} />
                 <div id="btn-cont">
                     <ContadorEstrelas size={"30px"} mostraTodas={true} selecionavel={true} value={estrelas} setValue={setEstrelas} />
-                    <Button>{preAvaliacao? "Salvar" :"Avaliar"}</Button>
+                    <Button>{preAvaliacao ? "Salvar" : "Avaliar"}</Button>
                 </div>
             </SForm>
         </SAvaliar>

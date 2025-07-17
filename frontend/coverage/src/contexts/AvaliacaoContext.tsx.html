@@ -276,8 +276,8 @@ interface AvaliacaoContextType {
   avaliacoes: AvaliacaoProps[]
   isLoading: boolean
   adicionarAvaliacao: (avaliacao: Omit&lt;AvaliacaoProps, "id"&gt;) =&gt; Promise&lt;AvaliacaoProps&gt;
-  removerAvaliacao: (id: number) =&gt; Promise&lt;void&gt;
-  getAvaliacaoByUser: (userId: number) =&gt; AvaliacaoProps[]
+  removerAvaliacao: (id: string) =&gt; Promise&lt;void&gt;
+  getAvaliacaoByUser: (userid: string) =&gt; AvaliacaoProps[]
 }
 &nbsp;
 <span class="cstat-no" title="statement not covered" >export const AvaliacaoContext = createContext&lt;AvaliacaoContextType&gt;({</span>
@@ -337,7 +337,7 @@ interface AvaliacaoProviderProps {
 <span class="cstat-no" title="statement not covered" >    })</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  const removerAvaliacao = async (id: number): Promise&lt;void&gt; =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  const removerAvaliacao = async (id: string): Promise&lt;void&gt; =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    return new Promise((resolve) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >      setTimeout(() =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >        setAvaliacoes((prev) =&gt; prev.filter((a) =&gt; a.id !== id))</span>
@@ -346,7 +346,7 @@ interface AvaliacaoProviderProps {
 <span class="cstat-no" title="statement not covered" >    })</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  const getAvaliacaoByUser = (userId: number): AvaliacaoProps[] =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  const getAvaliacaoByUser = (userid: string): AvaliacaoProps[] =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    console.log(avaliacoes)</span>
 <span class="cstat-no" title="statement not covered" >    console.log(userId)</span>
 <span class="cstat-no" title="statement not covered" >    return avaliacoes.filter((a) =&gt; a.autor.id === userId)</span>
